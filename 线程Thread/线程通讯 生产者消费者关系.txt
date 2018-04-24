@@ -1,0 +1,97 @@
+package com.arr;
+
+class res {					//产品
+	public String name;	
+	public double price;
+	boolean flag = false;  //产品状态
+}
+
+class Scz extends Thread {			//生产者
+	res p;
+
+	public Scz(res p) {
+		// TODO Auto-generated constructor stub
+		this.p = p;
+	}
+
+	public void run() {
+		int num = 0;
+		while (true) {
+			synchronized (p) {
+				if (p.flag == false) {
+					if (num % 2 == 0) {
+						p.name = "苹果";
+						p.price = 6.5;
+
+					} else {
+						p.name = "香蕉";
+						p.price = 2.0;
+
+					}
+					System.out.println("生产了       " + p.name + "价格" + p.price);
+					num++;
+					p.flag = true;
+				
+						
+						p.notify();
+					
+
+				} else {
+					try {
+						p.wait();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+
+		}
+
+	}
+}
+
+class Xfz extends Thread {			//消费者
+	res p;
+
+	public Xfz(res p) {
+		this.p = p;
+
+	}
+
+	public void run() {
+
+		while (true) {
+			synchronized (p) {
+//				System.out.println(p.flag);
+				if (p.flag) {
+					System.out.println("消费" + p.name + "价格" + p.price);
+					p.flag = false;
+					p.notify();
+				} else {
+					try {
+						p.wait();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+				}
+
+			}
+		}
+
+	}
+}
+
+class ST {
+	public static void main(String[] args) {
+		res res = new res();
+		Scz scz = new Scz(res);
+		Xfz xfz = new Xfz(res);
+		scz.start();
+		xfz.start();
+
+	}
+
+}

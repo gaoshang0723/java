@@ -1,0 +1,54 @@
+Synchronized(对象){   		//对象可以随意一个对象 也可以是常量字符串
+	内容……
+
+}
+
+
+=====================================================
+
+
+
+package com.arr;
+
+
+class ST  extends Thread {
+	public ST(String str) {
+		this.setName(str);
+	
+	}
+	  static int num = 50;  				//共享线程数据 
+	  static Object o = new Object();		//共享线程锁
+	  //共享（加static）若不共享则会出现50号被卖3次问题
+  	@Override
+  		public void run() {		
+  		
+  		while(true){
+  			synchronized (o) {					//加锁  可以是对象或者字符串
+  				if(num>0){
+  	  				System.out.println(Thread.currentThread().getName()+" "+num);
+  	  				num--;
+  	  			}else{
+  	  				System.out.println("null");
+  	  				break;
+  	  			}
+			}
+  			
+  		}
+  	}
+	
+}
+
+
+public class test {
+		public static void main(String[] args) {
+			ST st1 = new ST("st1");
+			ST st2 = new ST("st2");
+			ST st3 = new ST("st3");
+			st1.start();			//开启线程
+			st2.start();		
+			st3.start();
+		}
+	
+	
+
+}
