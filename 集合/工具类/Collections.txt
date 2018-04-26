@@ -1,42 +1,42 @@
-Collections.addAll(¼¯ºÏ,"ÔªËØ1","ÔªËØ2","ÔªËØ3",¡­¡­)	//Ìí¼ÓÔªËØ
+Collections.addAll(é›†åˆ,"å…ƒç´ 1","å…ƒç´ 2","å…ƒç´ 3",â€¦â€¦)	//æ·»åŠ å…ƒç´ 
 
-Collections.reverse(¼¯ºÏ);		//·´×ªË³Ğò
+Collections.reverse(é›†åˆ);		//åè½¬é¡ºåº
 
-Collections.shuffle(¼¯ºÏ);	//Ëæ»ú´òÂÒË³Ğò
+Collections.shuffle(é›†åˆ);	//éšæœºæ‰“ä¹±é¡ºåº
 
-Collections.sort(¼¯ºÏ);		//°´×ÔÈ»Ë³ĞòÅÅĞò
+Collections.sort(é›†åˆ);		//æŒ‰è‡ªç„¶é¡ºåºæ’åº
 
-int index=Collections.binarySearch(¼¯ºÏ,"ÔªËØ");	//¼¯ºÏÊÇÅÅºÃĞòµÄ£¬²éÕÒÔªËØ²¢·µ»ØÆäË÷Òı
+int index=Collections.binarySearch(é›†åˆ,"å…ƒç´ ");	//é›†åˆæ˜¯æ’å¥½åºçš„ï¼ŒæŸ¥æ‰¾å…ƒç´ å¹¶è¿”å›å…¶ç´¢å¼•
 
-Collections.max(¼¯ºÏ)		//×î´óÖµ
+Collections.max(é›†åˆ)		//æœ€å¤§å€¼
 
-Collections.min(¼¯ºÏ)		//×îĞ¡Öµ
+Collections.min(é›†åˆ)		//æœ€å°å€¼
 
-Collections.replaceAll(¼¯ºÏ, "¾É¼¯ºÏ", "ĞÂ¼¯ºÏ");		//½«¼¯ºÏÖĞËùÓĞµÄ¡°¾É¼¯ºÏ¡± Ìæ»»³É¡°ĞÂ¼¯ºÏ¡±
+Collections.replaceAll(é›†åˆ, "æ—§é›†åˆ", "æ–°é›†åˆ");		//å°†é›†åˆä¸­æ‰€æœ‰çš„â€œæ—§é›†åˆâ€ æ›¿æ¢æˆâ€œæ–°é›†åˆâ€
 
 =====================================================================
-Àı×Ó£º
+ä¾‹å­ï¼š
 
 ArrayList<String> list=new ArrayList<String>();
-Collections.addAll(list, "s","s","e","a");		//Ìí¼ÓÔªËØ
+Collections.addAll(list, "s","s","e","a");		//æ·»åŠ å…ƒç´ 
 System.out.println(list);	
-Collections.reverse(list);				//·´×ªË³Ğò
+Collections.reverse(list);				//åè½¬é¡ºåº
 System.out.println(list);
-Collections.shuffle(list);				//Ëæ»ú´òÂÒË³Ğò
+Collections.shuffle(list);				//éšæœºæ‰“ä¹±é¡ºåº
 System.out.println(list);				
-Collections.sort(list);					//°´×ÔÈ»Ë³ĞòÅÅĞò
+Collections.sort(list);					//æŒ‰è‡ªç„¶é¡ºåºæ’åº
 System.out.println(list);				
-int index=Collections.binarySearch(list,"w");		//¼¯ºÏÊÇÅÅºÃĞòµÄ£¬²éÕÒÔªËØ²¢·µ»ØÆäË÷Òı
+int index=Collections.binarySearch(list,"w");		//é›†åˆæ˜¯æ’å¥½åºçš„ï¼ŒæŸ¥æ‰¾å…ƒç´ å¹¶è¿”å›å…¶ç´¢å¼•
 System.out.println(index);
-System.out.println(Collections.max(list));			//×î´óÖµ
-System.out.println(Collections.min(list));			//×îĞ¡Öµ
-Collections.replaceAll(list, "s", "1");				//½«¼¯ºÏÖĞËùÓĞµÄ¡°s¡± Ìæ»»³É¡°1¡±
+System.out.println(Collections.max(list));			//æœ€å¤§å€¼
+System.out.println(Collections.min(list));			//æœ€å°å€¼
+Collections.replaceAll(list, "s", "1");				//å°†é›†åˆä¸­æ‰€æœ‰çš„â€œsâ€ æ›¿æ¢æˆâ€œ1â€
 System.out.println(list);
 
 
 
 --------------------------------------------------
-½á¹û£º
+ç»“æœï¼š
 [a, e, s, s]
 [a, s, e, s]
 [a, e, s, s]
@@ -44,3 +44,5 @@ System.out.println(list);
 s
 a
 [a, e, 1, 1]
+
+ã€‚
