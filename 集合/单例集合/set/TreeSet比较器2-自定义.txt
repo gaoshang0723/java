@@ -1,0 +1,64 @@
+TreeSet 自定义比较器
+1）新建比较器类继承Comparator接口
+2）实现compare方法
+3）新建集合传入比较器
+---------------------------------------
+
+package top.myideashop.wp;
+
+import java.util.Comparator;
+import java.util.TreeSet;
+class Emp {				//自定义类
+	private int id;
+	private String name;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "Emp [id=" + id + ", name=" + name + "]";		//重写toString()
+	}
+
+	public Emp(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
+}
+
+class myCom implements Comparator<Emp> {		//自定义比较器
+
+	@Override
+	public int compare(Emp o1, Emp o2) {
+
+		return o1.getId() - o2.getId();
+	}
+
+}
+
+public class fileRename {
+	public static void main(String[] args) {
+		TreeSet<Emp> e = new TreeSet<Emp>(new myCom());		//创建集合并传入比较器
+		e.add(new Emp(1, "张三"));
+		e.add(new Emp(2, "李四"));
+		e.add(new Emp(3, "王五"));
+		System.out.println(e);
+
+	}
+
+}
