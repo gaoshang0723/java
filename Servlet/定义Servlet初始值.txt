@@ -1,0 +1,40 @@
+web.xml
+=========================
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>testSe</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<servlet-name>test</servlet-name>
+		<servlet-class>com.ishops.test</servlet-class>
+		<init-param>					//只能在该Servlet中使用，不能在整个网站中用，不是全局变量
+			<param-name>DATABASE</param-name>	//获取方式：ServletConfig config=getServletConfig();
+			<param-value>root</param-value>		//	    config.getInitParameter("DATABASE");
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>test</servlet-name>
+		<url-pattern>/test</url-pattern>
+	</servlet-mapping>
+	<context-param>						//整个网站中都可以获取
+		<param-name>USERNAME</param-name>		//获取方式:ServletContext context = request.getServletcontext();
+		<param-value>AMN</param-value>		  	//         context.getInitParameter("USERNAME");
+	</context-param>
+	<context-param>
+		<param-name>PASS</param-name>
+		<param-value>AMN1</param-value>
+	</context-param>
+
+</web-app>
+

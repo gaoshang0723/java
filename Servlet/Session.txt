@@ -1,0 +1,7 @@
+HttpSession se= request.getSession();		//获取session
+
+se.setAttribute("key","value");			//设置
+
+se.getAttribute("key");				//获取
+
+session.invalidate();				//销毁

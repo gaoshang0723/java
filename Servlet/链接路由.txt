@@ -1,0 +1,17 @@
+web.xml
+---------
+<servlet>
+	<servlet-name>test</servlet-name>		//Servlet名字 
+	<servlet-class>com.ishops.test</servlet-class>	//包，路径
+</servlet>
+<servlet-mapping>
+	<servlet-name>test</servlet-name>		//Servlet名字 ，与上面的保持一致
+	<url-pattern>/te</url-pattern>			//设置访问路由  http://localhost:8080/testSe/te
+</servlet-mapping>
+
+
+=================================
+
+Servlet
+-------
+ @WebServlet("/te1")
