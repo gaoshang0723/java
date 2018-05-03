@@ -1,0 +1,71 @@
+<jsp:useBean/>
+实例化：
+	<jsp:useBean id="新建对象的名字" class="类所在的路径" scope="范围值"/>
+    例：
+	<jsp:useBean id="amn" class="com.ishops.DBmodel.AmnModel" scope="session"/>
+
+	实例化AmnModel对象,名叫amn 
+	注意完整路径,
+	scope作用范围:
+ 	 1.page(当前页面)
+ 	 2.session（session的作用域）
+ 	 3.request(request的作用域)
+ 	 4.application(当前网站)
+=========================================================================================
+<jsp:setProperty/>
+赋值
+   赋值方式1：
+	<jsp:setProperty name="实例化对象的名字" property="*"/>
+     例：
+	<jsp:setProperty name="amn" property="*"/>	
+										
+	 对象赋值，需要前台输入框的name与对象属性名一致
+--------------------------------------
+   赋值方式2：
+	<jsp:setProperty name="实例化对象的名字" property="对象属性"  param="前台input的name值"/>
+     例：
+	<jsp:setProperty name="amn" property="name"  param="name"/>								
+	<jsp:setProperty name="amn" property="age"  param="age"/>
+
+	property 对象属性名
+	param 前台表单name值
+=========================================================================================
+<jsp:getProperty/>
+获取：
+	<jsp:getProperty name="实例化对象的名字" property="对象属性"/>
+     例：
+	<jsp:getProperty name="amn" Property="age"/>           获取amn对象的age值,并打印 
+	<jsp:getProperty name="amn" Property="name"/> 	       获取amn对象的name值,并打印
+=========================================================================================
+<jsp:include/>
+包含：
+   无参：
+	<jsp:include page="被包含的文件" />
+     例：
+	<jsp:include page="test.jsp" />
+------------------------------------------
+   有参：
+	<jsp:include page="被包含的文件" >
+		<jsp:param name="名字" value="值"/>		//请求参数
+	</jsp:include>
+
+     例：
+	<jsp:include page="test.jsp">
+		<jsp:param name="id" value="1"/>		//id=1请求test.jsp
+	</jsp:include>
+=========================================================================================
+<jsp:forward/>
+请求转发：
+   无参：
+	<jsp:forward page="页面" /> 
+   有参：
+	<jsp:forward page="页面">
+		<jsp:param name="名字" value="值"/>		
+	</jsp:forward>
+
+
+
+
+
+
+
