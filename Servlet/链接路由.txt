@@ -2,7 +2,7 @@ web.xml
 ---------
 <servlet>
 	<servlet-name>test</servlet-name>		//Servlet名字 
-	<servlet-class>com.ishops.test</servlet-class>	//包，路径
+	<servlet-class>com.ishops.test</servlet-class>	//包（com.ishops），路径
 </servlet>
 <servlet-mapping>
 	<servlet-name>test</servlet-name>		//Servlet名字 ，与上面的保持一致
