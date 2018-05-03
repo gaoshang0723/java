@@ -14,4 +14,4 @@ web.xml
 
 Servlet
 -------
- @WebServlet("/te1")
+ @WebServlet("/te")
