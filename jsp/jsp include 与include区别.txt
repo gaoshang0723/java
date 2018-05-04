@@ -14,8 +14,10 @@ JSP中两种include的区别
    1.这是一种Action指令，用于动态包含JSP程序或HTML页面。
 
    2.除非该指令被运行到，否则不会被Tomcat等JSP Engine编译
+   
+   3.若不含参数，他的作用于范围包括session ,request, application，但是不包含page范围的对象
 
-   3.可以携带参数，代码如下：
+   4.可以携带参数，代码如下：
       <jsp:include page="included.jsp">  
           <jsp:param name="user" value="aa" />  
       </jsp:include>
