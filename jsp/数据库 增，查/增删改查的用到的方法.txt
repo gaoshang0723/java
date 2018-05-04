@@ -1,0 +1,5 @@
+ÔöÉ¾¸Ä
+execUpdate()
+
+²é
+execQuery()
