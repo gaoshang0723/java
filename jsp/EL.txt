@@ -1,0 +1,17 @@
+<%
+	request.setAttribute("name", "amn");
+	
+%>
+
+
+
+======================
+获取方式1
+	${requestScope.name}<br/>
+
+获取方式2
+	${requestScope["name"] }<br/>
+
+获取方式3
+	${name }
+	范围从小到大查找（request<session<application）
