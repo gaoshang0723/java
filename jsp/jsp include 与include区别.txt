@@ -1,0 +1,21 @@
+JSP中两种include的区别
+
+
+<%@include file="xxx.jsp"%> （个人理解：先包含文件，两个文件最终编译为一个文件；不可传参）
+
+   1.这是一种Driective指令，是一种编译指令，是在编译期间的指令，是静态包含，即将指定的JSP页面或HTML页面包含进来，整个页面一起编译。
+
+   2.不能在include指令里面传递参数，如<%@include file="xxx.jsp?aa=1"%>是不合法的，只能在运行JSP页面后，在URL地址栏上传递参数。
+
+
+
+<jsp:include page="xxx.jsp"/>（个人理解：两个文件编译为两个文件，代码执行到这行代码时，在编译；可传参）
+
+   1.这是一种Action指令，用于动态包含JSP程序或HTML页面。
+
+   2.除非该指令被运行到，否则不会被Tomcat等JSP Engine编译
+
+   3.可以携带参数，代码如下：
+      <jsp:include page="included.jsp">  
+          <jsp:param name="user" value="aa" />  
+      </jsp:include>
