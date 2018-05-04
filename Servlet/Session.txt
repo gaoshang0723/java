@@ -5,3 +5,13 @@ se.setAttribute("key","value");			//设置
 se.getAttribute("key");				//获取
 
 session.invalidate();				//销毁
+
+se.isNew(); 					//是否为新
+
+se.getCreationTime();				//返回创建时间的时间戳
+
+se.LastAccessedTime();				//返回客户端最后一次请求的时间戳
+
+se.setMaxInactiveInterval();			//设置会话超时（单位：秒）
+
+se.getMaxInactiveInterval();			//取得会话超时的时期
