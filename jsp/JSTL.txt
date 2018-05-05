@@ -53,9 +53,14 @@ if判断
 
 ====================================================================================
 循环
+	
 
-	<c:forEach var="i" begin="0" end="5" step="1" items="${arr}">
-		${i}
+	<c:forEach  varStatus="v" var="i" begin="0" end="5" step="1" items="${arr}">
+		${i} 					//值
+		${v.first}				//判断是否为第一次迭代
+		${v.last}				//判断是否为最后一次迭代
+		${v.index}				//当前这次迭代从 0 开始的迭代计数
+		${v.count}				//当前这次迭代从 1 开始的迭代计数
 	</c:forEach>
 
 	var: 新变量 将值付给新变量
@@ -63,11 +68,23 @@ if判断
 	end: 结束的位置
 	step: 步长
 	items: 源
+     ---------------------
+     例子:	
+	<%
+		int[] arr={98,34,68,79,80}
+		request.setAttribute("arr",arr);
+	%>
 
-	等同于
-	for(int i=0;i<5;i++){
-		out.write(i);
-	}
+	<c:forEach varStatus="v" var="i" begin="0" end="5" items="${requestScope.arr}">
+		${i}---${v.first}---${v.last}---${v.index}---${v.count}<br/>
+	</c:forEach>
+     结果：
+	98---true---false---0---1
+	34---false---false---1---2
+ 	68---false---false---2---3
+ 	79---false---false---3---4
+ 	80---false---true---4---5
+		
 
 ====================================================================================
 循环（分割）
