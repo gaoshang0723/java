@@ -100,7 +100,24 @@ if判断
 	var ：新变量
 	items:	源
 	delims:	分割的字符
+====================================================================================
+包含
+   无参
+	<c:import url="http://www.baidu.com"/>		//url文件地址
+   有参
+	<c:import url="index.jsp">
+		<c:param name="age">18</c:param>	//age=18
+	</c:import>
 
+====================================================================================
+跳转
+   无参
+	<c:redirect url="http://www.baidu.com"/>		//url设置跳转地址
+   有参
+	<c:redirect url="index.jsp">
+		<c:param name="age">18</c:param>	//age=18
+	</c:redirect>		
+	
 
 
 
