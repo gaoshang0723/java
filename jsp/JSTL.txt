@@ -1,0 +1,102 @@
+输出：
+ 
+	<c:out value="${'mx'}"></c:out>				//输出字符串mx
+
+	<c:out value="${requestScope.name}" default="mx"/>	//输出request范围的name变量 如果没有则输出默认值 mx
+
+	value   必选值
+	default  可选
+
+====================================================================================
+设置变量
+   普通变量
+	<c:set value="name" scope="session">Amn</c:set>		//设置变量name="Amn"  作用于为session
+	<c:out value="${sessionScope.name}"/>			//输出
+----------
+   javaBean 
+	<jsp:useBean id="user" class="com.ishops.model.UserModel" scope="session"/>    
+	//用com.ishops.model.UserModel类实例化一个名叫user的对象，作用域范围：session
+
+	<c:set target="${user}" property="name">Amn</c:set>		//Amn赋值给user对象里的name属性
+	<c:out value="${user.name}"></c:out>				//输出
+
+====================================================================================
+删除变量
+	<c:remove var="name"/> 			//删除名为name的变量
+
+====================================================================================
+处理异常
+	<c:catch var="error">			//将错误信息定义为名叫error 的变量
+		${10/0}
+	</c:catch>
+
+====================================================================================
+if判断
+	<c:if test="${name=='amn'}">		//test的EL表达式返回值为布尔型
+		name的值为amn
+	</c:if>
+	
+	等同于
+	if(name.equels("amn")){
+		out.write("name的值为amn");
+	}
+
+====================================================================================
+选择(判断)（swicth ……case）或者（if(){}else if(){}else{}）
+
+	<c:choose>
+		<c:when test="${age>50}">大于50</c:when>		
+		<c:when test="${age>40}">大于40</c:when>
+		<c:when test="${age>30}">大于30</c:when>
+		<c:otherwise>小于30</c:otherwise>
+	</c:choose>
+
+====================================================================================
+循环
+
+	<c:forEach var="i" begin="0" end="5" step="1" items="${arr}">
+		${i}
+	</c:forEach>
+
+	var: 新变量 将值付给新变量
+	begin: 开始的位置
+	end: 结束的位置
+	step: 步长
+	items: 源
+
+	等同于
+	for(int i=0;i<5;i++){
+		out.write(i);
+	}
+
+====================================================================================
+循环（分割）
+
+	<c:forTokens var="str" items="java;jsp;servlet" delims=";" >
+		${str}<br/>
+	</c:forTokens>
+	结果：
+		java
+		jsp
+		servlet
+	---------------------------
+	var ：新变量
+	items:	源
+	delims:	分割的字符
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
