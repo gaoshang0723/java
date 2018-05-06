@@ -14,7 +14,7 @@
 ====================================================================================
 设置变量
    普通变量
-	<c:set value="name" scope="session">Amn</c:set>		//设置变量name="Amn"  作用于为session
+	<c:set var="name" scope="session">Amn</c:set>		//设置变量name="Amn"  作用于为session
 	<c:out value="${sessionScope.name}"/>			//输出
 ----------
    javaBean 
