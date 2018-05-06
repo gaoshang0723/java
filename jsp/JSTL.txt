@@ -41,7 +41,7 @@ if判断
 	</c:if>
 	
 	等同于
-	if(name.equels("amn")){
+	if(name.equals("amn")){
 		out.write("name的值为amn");
 	}
 
