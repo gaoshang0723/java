@@ -2,7 +2,7 @@
 1）加过滤器
 response.setCharacterEncoding("UTF-8");
 
-request.setCharacterEncoding("UTF-8"); 只对post方式提交的数据有用
+	request.setCharacterEncoding("UTF-8"); 只对post方式提交的数据有用
 
 2）tomcat  server.xml
-URIEncoding="utf-8"
+	URIEncoding="utf-8"
