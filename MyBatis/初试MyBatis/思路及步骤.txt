@@ -4,7 +4,7 @@
 
 3)新建文件夹（floder）lib，导入log4j ;mysql驱动; mybatis 包  BuildPath
 
-4)新建(Source Folder) conf ,新建三个xml文件:sql映射文件（注册sql语句），全局配置文件(数据库信息)，日志输出文件（log4j.xml）
+4)新建(Source Folder) conf ,新建三个xml文件:sql映射文件bookMapper（注册sql语句），全局配置文件mybatis-config.xml(数据库信息)，日志输出文件（log4j.xml）
 
 5)创建接口，将接口与sql映射文件绑定
 	绑定方法：
