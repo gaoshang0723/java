@@ -1,0 +1,85 @@
+接口类
+	public Book selectBook(int id); // 返回类型是book javaBean
+
+	public int insertBook(Book book);
+
+	public void deleteBook(int id);
+
+	public void updateBook(Book book);
+
+===============================================================================================
+数据库映射文件（bookMapper.xml）
+
+----------------------------------------------
+<!-- 查询数据 --> 
+	<select id="selectBook" resultType="b">		<!-- 全局配置文件 已经起了别名 这里用别名 -->
+		select * from book where book_id = #{id}	<!-- 接口中定义接受的数据类型的是int型 的数据id -->
+	</select>
+	<!-- resultType：返回值类型（JavaBean:Book） -->
+####################################
+
+<!-- 插入数据 
+	id：对应接口的方法名
+
+      *获取新增数据的id
+	useGeneratedKeys：开启获取新增数据的主键 
+	keyProperty：javaBean对应的属性
+	parameterType：  返回类型 可省略
+-->
+	<insert id="insertBook" parameterType="b" useGeneratedKeys="true" keyProperty="book_id">
+		insert into book (book_id,book_name,book_price) values
+		(#{book_id},#{book_name},#{book_price})					
+		<!-- 接口中定义接受的数据类型为javabean(Book)类型，所以#{} 与javabean变量名一致 -->
+	</insert>
+####################################
+
+<!-- 删除 -->
+	<delete id="deleteBook">
+		delete from book where book_id =#{id}
+	</delete>
+####################################
+
+<!-- 修改数据 -->
+	<update id="updateBook">
+		update book set
+		book_name=#{book_name},book_price=#{book_price}
+		where book_id=#{book_id}
+	</update>
+
+====================================================================================================
+测试
+		String resource = "mybatis-config.xml";
+		InputStream inputStream = Resources.getResourceAsStream(resource);
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+
+		// SqlSession session = sqlSessionFactory.openSession(true); 后面则为自动提交 可省略commit()
+		SqlSession session = sqlSessionFactory.openSession();
+
+	正题:
+		try {
+			bookMapper bm = session.getMapper(bookMapper.class); // 直接 接口名。class	
+			//查询
+			Book Book = bm.selectBook(2); // sql映射文件中，sql语句方法对应的id
+			System.out.println(Book);
+		
+			//增加
+			Book book =new Book("Amn", 99.9);		//前提是数据库映射文件需要useGeneratedKeys为													true,keyProperty="javabean对应数据表主键的属性名"	
+
+			System.out.println(bm.insertBook(book));	//输出影响行数
+			System.out.println(book.getBook_id());		//输出刚插入数据的id
+			
+			//删除
+			bm.deleteBook(12);
+			
+			//修改
+			Book book =new Book("mx", 88.8);
+			book.setBook_id(11);
+			bm.updateBook(book);
+			
+			//提交事务		
+			session.commit();
+			
+		} finally {
+			session.close();
+		}
+
