@@ -1,6 +1,0 @@
-Collection user = new ArrayList();
-person person = new person(1,"张三");
-		
-Collection user = new ArrayList();
-user.add(person);
-System.out.println(user.contains(person));  //contains  比较   contains底层依赖了equals方法。

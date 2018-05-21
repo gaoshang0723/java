@@ -1,7 +1,0 @@
-
-
-
-  <error-page>
-  	<error-code>404</error-code> //´íÎóÏìÓ¦ºÅ
-  	<location>/error.html</location>  //·µ»ØµØÖ·
-  </error-page>

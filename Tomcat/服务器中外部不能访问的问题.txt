@@ -1,7 +1,0 @@
- <Connector address="0.0.0.0" URIEncoding="utf-8" port="8080" protocol="HTTP/1.1"
-               connectionTimeout="20000"
-               redirectPort="8443" />
-
-
-
-address 设为0.0.0.0即可，默认没有该属性
