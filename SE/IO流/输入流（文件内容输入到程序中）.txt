@@ -1,0 +1,15 @@
+	
+
+
+public static void main(String[] args) throws IOException {
+		File file = new File("e:/a.txt"); //创建源
+		
+		FileInputStream in =new FileInputStream(file);	//创建输入流
+		
+		byte[] b=new byte[10];			//有多少位置就都多少
+		int ret=in.read(b);			//返回读到的字节数，将文件的内容输入到数组
+		System.out.println(ret);
+		System.out.println(Arrays.toString(b));
+		
+		in.close();	//关闭资源
+	}

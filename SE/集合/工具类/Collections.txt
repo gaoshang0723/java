@@ -1,0 +1,48 @@
+Collections.addAll(集合,"元素1","元素2","元素3",……)	//添加元素
+
+Collections.reverse(集合);		//反转顺序
+
+Collections.shuffle(集合);	//随机打乱顺序
+
+Collections.sort(集合);		//按自然顺序排序
+
+int index=Collections.binarySearch(集合,"元素");	//集合是排好序的，查找元素并返回其索引
+
+Collections.max(集合)		//最大值
+
+Collections.min(集合)		//最小值
+
+Collections.replaceAll(集合, "旧集合", "新集合");		//将集合中所有的“旧集合” 替换成“新集合”
+
+=====================================================================
+例子：
+
+ArrayList<String> list=new ArrayList<String>();
+Collections.addAll(list, "s","s","e","a");		//添加元素
+System.out.println(list);	
+Collections.reverse(list);				//反转顺序
+System.out.println(list);
+Collections.shuffle(list);				//随机打乱顺序
+System.out.println(list);				
+Collections.sort(list);					//按自然顺序排序
+System.out.println(list);				
+int index=Collections.binarySearch(list,"w");		//集合是排好序的，查找元素并返回其索引
+System.out.println(index);
+System.out.println(Collections.max(list));			//最大值
+System.out.println(Collections.min(list));			//最小值
+Collections.replaceAll(list, "s", "1");				//将集合中所有的“s” 替换成“1”
+System.out.println(list);
+
+
+
+--------------------------------------------------
+结果：
+[a, e, s, s]
+[a, s, e, s]
+[a, e, s, s]
+-5
+s
+a
+[a, e, 1, 1]
+
+。

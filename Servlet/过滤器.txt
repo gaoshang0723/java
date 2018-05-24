@@ -1,0 +1,69 @@
+注册过滤器
+------------------
+web.xml
+
+  <filter>
+  	<filter-name>filterTest</filter-name>				//过滤器名字
+  	<filter-class>com.ishops.filter.filterTest</filter-class>	//过滤器完整路径
+  </filter>
+  <filter-mapping>
+
+  	<filter-name>filterTest</filter-name>
+  	<url-pattern>/test</url-pattern>				/*访问该路由(servlet-mapping 的 url-pattern)时过滤器起作用   									 * <url-pattern>/*</url-pattern> 
+  </filter-mapping>							 *所有的页面都起作用
+									 */
+-------------------
+filter过滤器注解方式
+@WebFilter("/test")		//访问该路由时过滤器起作用
+
+
+
+===========================================
+过滤器
+
+
+//@WebFilter("/filterTest")
+public class filterTest implements Filter {
+
+    /**
+     * Default constructor. 
+     */
+    public filterTest() {
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see Filter#destroy()
+	 */
+	public void destroy() {
+		// TODO Auto-generated method stub
+		System.out.println("filter 销毁……");
+	}
+
+	/**
+	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
+	 */
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		System.out.println("filter……");
+		PrintWriter out = response.getWriter();
+		String name=request.getParameter("name");
+		out.write(name);
+		if("amn".equals(name)){
+			chain.doFilter(request, response);		//验证通过
+		}
+		
+		
+		
+		
+		
+	}
+
+	/**
+	 * @see Filter#init(FilterConfig)
+	 */
+	public void init(FilterConfig fConfig) throws ServletException {
+		// TODO Auto-generated method stub
+		System.out.println("filter 创建……");
+	}
+
+}

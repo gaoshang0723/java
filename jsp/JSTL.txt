@@ -1,0 +1,140 @@
+安装：
+	1）导包jstl.jar和Standard.jar
+	2）<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+=====================================================
+输出：
+ 
+	<c:out value="${'mx'}"></c:out>				//输出字符串mx
+
+	<c:out value="${requestScope.name}" default="mx"/>	//输出request范围的name变量 如果没有则输出默认值 mx
+
+	value   必选值
+	default  可选
+
+====================================================================================
+设置变量
+   普通变量
+	<c:set var="name" scope="session">Amn</c:set>		//设置变量name="Amn"  作用于为session
+	<c:out value="${sessionScope.name}"/>			//输出
+----------
+   javaBean 
+	<jsp:useBean id="user" class="com.ishops.model.UserModel" scope="session"/>    
+	//用com.ishops.model.UserModel类实例化一个名叫user的对象，作用域范围：session
+
+	<c:set target="${user}" property="name">Amn</c:set>		//Amn赋值给user对象里的name属性
+	<c:out value="${user.name}"></c:out>				//输出
+
+====================================================================================
+删除变量
+	<c:remove var="name"/> 			//删除名为name的变量
+
+====================================================================================
+处理异常
+	<c:catch var="error">			//将错误信息定义为名叫error 的变量
+		${10/0}
+	</c:catch>
+
+====================================================================================
+if判断
+	<c:if test="${name=='amn'}">		//test的EL表达式返回值为布尔型
+		name的值为amn
+	</c:if>
+	
+	等同于
+	if(name.equals("amn")){
+		out.write("name的值为amn");
+	}
+
+====================================================================================
+选择(判断)（swicth ……case）或者（if(){}else if(){}else{}）
+
+	<c:choose>
+		<c:when test="${age>50}">大于50</c:when>		
+		<c:when test="${age>40}">大于40</c:when>
+		<c:when test="${age>30}">大于30</c:when>
+		<c:otherwise>小于30</c:otherwise>
+	</c:choose>
+
+====================================================================================
+循环
+	
+
+	<c:forEach  varStatus="v" var="i" begin="0" end="5" step="1" items="${arr}">
+		${i} 					//值
+		${v.first}				//判断是否为第一次迭代
+		${v.last}				//判断是否为最后一次迭代
+		${v.index}				//当前这次迭代从 0 开始的迭代计数
+		${v.count}				//当前这次迭代从 1 开始的迭代计数
+	</c:forEach>
+
+	var: 新变量 将值付给新变量
+	begin: 开始的位置
+	end: 结束的位置
+	step: 步长
+	items: 源
+     ---------------------
+     例子:	
+	<%
+		int[] arr={98,34,68,79,80}
+		request.setAttribute("arr",arr);
+	%>
+
+	<c:forEach varStatus="v" var="i" begin="0" end="5" items="${requestScope.arr}">
+		${i}---${v.first}---${v.last}---${v.index}---${v.count}<br/>
+	</c:forEach>
+     结果：
+	98---true---false---0---1
+	34---false---false---1---2
+ 	68---false---false---2---3
+ 	79---false---false---3---4
+ 	80---false---true---4---5
+		
+
+====================================================================================
+循环（分割）
+
+	<c:forTokens var="str" items="java;jsp;servlet" delims=";" >
+		${str}<br/>
+	</c:forTokens>
+	结果：
+		java
+		jsp
+		servlet
+	---------------------------
+	var ：新变量
+	items:	源
+	delims:	分割的字符
+====================================================================================
+包含
+   无参
+	<c:import url="http://www.baidu.com"/>		//url文件地址
+   有参
+	<c:import url="index.jsp">
+		<c:param name="age">18</c:param>	//age=18
+	</c:import>
+
+====================================================================================
+跳转
+   无参
+	<c:redirect url="http://www.baidu.com"/>		//url设置跳转地址
+   有参
+	<c:redirect url="index.jsp">
+		<c:param name="age">18</c:param>	//age=18
+	</c:redirect>		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

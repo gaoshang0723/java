@@ -1,0 +1,33 @@
+exists();	//是否存在
+
+isDirectory();	//是否为文件夹
+
+isAbsolute();	//是否为绝对路径
+
+mkdir();	//创建文件夹	boolean
+	File file=new File("e:/mm1/");
+	file.mkdir();
+	//mm1不存在，可创建单级目录
+
+mkdirs();	//创建多级目录
+
+listRoots();	//获取盘符
+	File[] list=File.listRoots();
+	for (File list2 : list) {
+		System.out.print(list2);
+	}
+	//C:\D:\E:\F:\
+
+list();		//获取所有文件名	返回String[]数组
+	File file=new File("e:/mm/");
+	String[] list=file.list();
+	for (String string : list) {
+		System.out.println(string);
+	}
+	//获取e:/mm/下的文件名
+
+listFiles();	//获取所有文件对象
+
+
+getAbsolutePath();	//获取文件的绝对路径
+getParent();		//获取上一层 目录

@@ -1,0 +1,116 @@
+package com.ishops.www;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Scanner;
+
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
+import jdk.internal.dynalink.beans.StaticClass;
+
+class Users {					//定义Users类
+	 int id;
+     String password;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public Users(int id, String password) {
+		
+		this.id = id;
+		this.password = password;
+	}
+
+	
+	@Override
+	public boolean equals(Object obj) {				//重写   为了符合我们id的判断
+		Users user = (Users) obj;
+		return this.id==user.id;
+	}
+	
+	public String toString() {
+		return "{ 账号："+this.id+" 密码："+this.password+"}";
+	}
+	
+	
+}
+
+public class amn {
+	static Collection users = new ArrayList();				//创建Collection对象
+	static Scanner scanner = new Scanner(System.in);
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Users user =null;
+		while(true){
+			System.out.println("A 注册  B 登陆");
+			
+			String scan =scanner.next();
+	//		System.out.println(scan);
+			if("a".equalsIgnoreCase(scan)){
+				
+			
+				while(true){
+					System.out.println("注册账号");   //contains底层依赖了equals方法。 重写equals方法
+					int id=scanner.nextInt();
+					user = new Users(id, null);
+						if(users.contains(user)){
+							System.out.println("已存在,请重新输入");
+							
+						}else{
+							
+							break;
+						}
+			
+					
+				}
+				
+				System.out.println("密码");
+				String  password=scanner.next();
+				user.setPassword(password);
+				users.add(user);
+				System.out.println("注册成功!");
+				System.out.println("当前注册的人员："+users);
+
+				
+			}else if("b".equalsIgnoreCase(scan)){
+				boolean isLogin=false;
+//				System.out.println("登陆");
+//				System.out.println(users);
+				System.out.println("请输入登陆账号");
+				int id=scanner.nextInt();
+				System.out.println("请输入登陆账号密码");
+				String password = scanner.next();
+				
+				Iterator it =users.iterator();
+				while(it.hasNext()){
+					Users user1=(Users) it.next();
+					if(user1.id==id&&user1.password.equals(password)){
+						//存在该用户信息，登陆成功...
+						isLogin = true;
+					}
+				}
+				if(isLogin){
+					System.out.println("ok");
+				}else{
+					System.out.println("fail");
+				}
+				
+			}else{
+				System.out.println("有误");
+			}
+		}
+		
+	}
+
+
+
+}

@@ -1,0 +1,8 @@
+增删改
+execUpdate()
+
+查
+execQuery()
+
+获取插入数据的主键
+rs = pst.getGeneratedKeys(); 

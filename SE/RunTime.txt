@@ -1,0 +1,35 @@
+Runtime runtime = Runtime.getRuntime();	//获取当前执行系统（JVM）
+Process process = runtime.exec("程序路径"); //执行程序（只有.exe）
+process.destroy();				//关闭
+runtime.freeMemory()			//返回JVM空闲内存量 	    63144728
+runtime.maxMemory()			 //返回JVM可执行最大内存量  937951232
+runtime.totalMemory()  			//返回JVM内存总量	    64487424
+		
+=================================================
+package com.arr;
+
+import java.io.IOException;
+import java.util.Arrays;
+
+import com.sun.xml.internal.fastinfoset.sax.Properties;
+
+
+
+public class test {
+
+	public static void main(String[] args) throws IOException, InterruptedException {
+		Runtime runtime = Runtime.getRuntime();				//获取当前执行系统（JVM）
+//		Process process = runtime.exec("D:/Program Files (x86)/OSS/oss.exe");   //执行程序（只有.exe）
+//		Thread.sleep(3000);				//睡眠3秒
+//		process.destroy();				//关闭
+		System.out.println(runtime.freeMemory());   //返回JVM空闲内存量  63144728
+		System.out.println(runtime.maxMemory());   //返回JVM可执行最大内存量  937951232
+		System.out.println(runtime.totalMemory());  //返回JVM内存总量64487424
+		
+	
+		
+		
+		
+	}
+
+}

@@ -1,0 +1,31 @@
+package com.arr;
+
+import java.util.Scanner;
+
+
+
+import jdk.internal.dynalink.beans.StaticClass;
+
+
+
+public class test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String str ="   newq  1  ";
+		System.out.println(myReverse(str));
+	}
+	public static String  myReverse(String str){
+		char[] arr =str.toCharArray();
+		int first = 0;
+		int last = arr.length-1;
+		for(first =0,last=arr.length-1;first<last;first++,last--){
+			char temp = arr[first];
+			arr[first] = arr[last];
+			arr[last] = temp;
+			}
+		return new String(arr);
+		
+	}
+
+}

@@ -1,0 +1,31 @@
+<%
+	request.setAttribute("request", "amn");
+	session.setAttribute("session", "amn");
+	application.setAttribute("application", "amn");
+	
+%>
+
+
+
+======================
+获取方式1
+	${param.name}<br/>		//表单提交获取   
+	${requestScope.request}<br/>
+	${sessionScope.session}<br/>
+	${applicationScope.application}<br/>
+
+获取方式2
+	${requestScope["name"] }<br/>
+
+获取方式3
+	${name }
+	范围从小到大查找（request<session<application）
+
+
+
+EL表达式只能获取到 requset session application param 范围的值 ，不能获取局部变量 
+
+
+
+==============================
+${empty str}   判断是否为空

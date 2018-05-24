@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ishops.dao.bookMapper">	 
+<!-- 将接口和sql映射文件绑定：
+	命名空间：为接口的包全名
+	sql方法的id为接口的方法名字 -->
+	<select id="selectBook" resultType="com.ishops.bean.Book">		
+		select * from book where book_id = #{id}
+	</select>
+	<!-- 
+	resultType：返回值类型（JavaBean:Book）
+	
+	 -->
+</mapper>

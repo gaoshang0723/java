@@ -1,0 +1,30 @@
+package encode;
+import java.io.*;
+
+public class encode {
+
+	public static void main(String[] args) throws Exception{
+		File infile =new File("d:/a.txt");
+		File outfile=new File("d:/b.txt");
+		
+		FileInputStream input = new FileInputStream(infile);
+		FileOutputStream output =new FileOutputStream(outfile);
+		
+		int content=0;
+		while ((content=input.read())!=-1) {
+//			System.out.println(content ^ 12);
+			output.write(content ^ 12);
+			
+			
+		}
+		
+		output.close();
+		input.close();
+		
+		
+		
+		
+
+	}
+
+}
