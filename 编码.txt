@@ -8,7 +8,4 @@ response.setCharacterEncoding("UTF-8");
 	URIEncoding="utf-8"
 
 3��jdbc:mysql://127.0.0.1:3306/book?useUnicode=true&characterEncoding=utf8
-<<<<<<< HEAD:编码.txt
 
-=======
->>>>>>> b3d62a3de132cb2b980b451a0ac2021d8854b351:编码.txt
