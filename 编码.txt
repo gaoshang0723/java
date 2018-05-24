@@ -6,3 +6,5 @@ response.setCharacterEncoding("UTF-8");
 
 2£©tomcat  server.xml
 	URIEncoding="utf-8"
+
+3£©jdbc:mysql://127.0.0.1:3306/book?useUnicode=true&characterEncoding=utf8
