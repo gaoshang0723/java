@@ -1,0 +1,39 @@
+
+当值为0或者大于0时，表示容器在应用启动时就加载这个servlet；
+当是一个负数时或者没有指定时，则指示容器在该servlet被选择时才加载。
+
+配置load-on-startup后，servlet在startup（访问）后立即加载，但只是调用servlet的init()方法，用以初始化该servlet相关的资源。初始化成功后，该servlet可响应web请求；
+
+如未配置load-on-startup，容器一般在第一次响应web请求时，会先检测该servlet是否初始化，如未初始化，则调用servlet的init()先初始化，初始化成功后，再响应请求。
+
+
+==============================================================================
+
+	<servlet>
+		<servlet-name>springMVC</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- 配置spring-mvc.xml位置 -->
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classPath:spring-mvc.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>springMVC</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+----------------------------------------
+<load-on-startup>1</load-on-startup>
+	startup --> 初始化该servlet(只调用init()) --> 初始化所有资源 --> 访问该servlet --> 直接响用请求
+
+<load-on-startup>-1</load-on-startup>
+	startup --> 初始化所有资源 -->访问该servlet -->初始化该servlet --> 直接响用请求
+
+
+##提高servlet的初始化优先级
+
+
+
+		

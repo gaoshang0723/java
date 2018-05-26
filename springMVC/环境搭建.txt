@@ -1,0 +1,99 @@
+下载spring框架
+	https://repo.spring.io/release/org/springframework/spring/
+	下载dist
+
+commons.logging下载地址
+	http://mvnrepository.org/artifact/commons-logging/commons-logging
+	直接搜索
+
+============================================
+
+1.新建javaWeb工程（项目名：springMVC）
+
+2.将spring框架下的libs内找到
+	aop
+	beans
+	context
+	core
+	expression
+	web
+	webmvc
+	加上commons-logging
+  复制到WEB-INF/lib 目录下
+
+3.右击springMVC，新建SourceFolder,新建xml文件(spring-mvc.xml)（粘合剂,名字随便）
+
+	找到Java Resource/Libraries/Web App Libraries/org.springframework.beans/factory/xml/spring-beans-4.3.xsd
+	
+	<xsd:schema xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+		targetNamespace="http://www.springframework.org/schema/beans">
+	复制到新建的xml文件（spring-mvc.xml）
+
+4. 在src中新建包（com.ishops.controller）
+
+5.编辑spring-mvc.xml文件
+
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd">
+
+		<context:component-scan base-package="com.ishops.controller" />		//src下包名
+	</beans>
+
+6.编辑web.xml
+	新增servlet
+	<servlet>
+		<servlet-name>springMVC</servlet-name>
+	      <!--类的位置：spring-webmvc-*/org.springframework.web.servlet/DispatcherServlet.class/DispatcherServlet,复制全路径-->
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- 配置spring-mvc.xml位置 -->
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classPath:spring-mvc.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>		//配置load-on-startup后，servlet在startup后立即加载，
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>springMVC</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+7.新建控制器
+   在src下新建的包（com.ishops.controller）新建类  
+
+	@Controller
+	@RequestMapping("/admin")			//访问该控制器的名字
+    新建方法index()
+
+	@RequestMapping("/index.html")			//访问该控制器的方法可随意定义，这里定义为index.html的目的是可隐藏真实路径
+	public String index(){
+		return "/admin/index.jsp";		//在WebContent下新建admin/index.jsp
+	}
+	-------------------------------
+	代码：
+	package com.ishops.controller;
+
+	import org.springframework.stereotype.Controller;
+	import org.springframework.web.bind.annotation.RequestMapping;
+
+	@Controller
+	@RequestMapping("/admin")
+	public class UserController {
+		@RequestMapping("/index")
+		public String index(){
+			return "/admin/index.jsp";
+		}
+	
+	}
+
+	--------------------------------
+
+	http://localhost:8081/springMVC/admin/index.html
+	即可访问index.jsp文件
+
+
