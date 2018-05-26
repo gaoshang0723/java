@@ -1,0 +1,3 @@
+获取根目录：
+	<%=request.getContextPath()%>
+	${pageContext.request.contextPath }
