@@ -35,8 +35,8 @@ commons.logging下载地址
 5.编辑spring-mvc.xml文件
 
 	<?xml version="1.0" encoding="UTF-8"?>
-	<beans xmlns="http://www.springframework.org/schema/beans"
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	<beans  xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 		xmlns:context="http://www.springframework.org/schema/context"
 		xsi:schemaLocation="http://www.springframework.org/schema/beans 
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context
@@ -84,7 +84,7 @@ commons.logging下载地址
 	@Controller
 	@RequestMapping("/admin")
 	public class UserController {
-		@RequestMapping("/index")
+		@RequestMapping("/index.html")
 		public String index(){
 			return "/admin/index.jsp";
 		}
