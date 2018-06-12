@@ -1,3 +1,4 @@
 获取根目录：
 	<%=request.getContextPath()%>
-	${pageContext.request.contextPath }
+
+	${pageContext.request.contextPath }	//推荐
