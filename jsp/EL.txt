@@ -19,7 +19,7 @@
 
 获取方式3
 	${name }
-	范围从小到大查找（request<session<application）
+	范围从小到大查找（param<request<session<application）
 
 
 
