@@ -28,7 +28,7 @@ web.xml
 		<url-pattern>/test</url-pattern>
 	</servlet-mapping>
 	<context-param>						//整个网站中都可以获取
-		<param-name>USERNAME</param-name>		//获取方式:ServletContext context = request.getServletcontext();
+		<param-name>USERNAME</param-name>		//获取方式:ServletContext context = 									request.getServletcontext();
 		<param-value>AMN</param-value>		  	//         context.getInitParameter("USERNAME");
 	</context-param>
 	<context-param>
