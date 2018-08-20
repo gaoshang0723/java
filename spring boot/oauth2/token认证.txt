@@ -1,0 +1,73 @@
+pom.xml
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+  	<dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-oauth2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-security</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mchange</groupId>	
+            <artifactId>c3p0</artifactId>
+            <version>0.9.5.2</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>					模板（可不加）
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+
+
+==============================================
+
+application.yml
+spring:
+  application:
+    name: simplecloud-sso
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/simplecloud?characterEncoding=UTF-8&useSSL=true
+    username: root
+    password: 123
+  jpa:
+    hibernate:
+    #      ddl-auto: create
+      ddl-auto: update
+    show-sql: true
+
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+     defaultZone: http://localhost:1001/eureka/
+server:
+  port: 1002
+
+
+==============================
+入口文件
+@SpringBootApplication
+@EnableEurekaClient
+@EnableAuthorizationServer

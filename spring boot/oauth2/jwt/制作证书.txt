@@ -1,0 +1,1 @@
+keytool -genkeypair -alias jzn -keyalg RSA -keypass jianzhennet.com -keystore cert.jks -storepass jianzhennet.com

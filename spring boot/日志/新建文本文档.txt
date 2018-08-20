@@ -1,0 +1,6 @@
+命名要求
+必须是：logback-spring.xml
+
+
+配置文件  application.yml
+可以选择生产环境如dev  prd

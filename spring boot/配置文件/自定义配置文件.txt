@@ -1,0 +1,15 @@
+和application.properties同级目录
+
+新建config.properties(名字无所谓)
+
+	app.name=Amn
+	app.website=http://www.ishops.top
+
+入口文件加载自定义配置文件
+	@PropertySource("classpath:文件名字")
+
+控制中获取变量
+	@Value("${app.name}")
+
+
+

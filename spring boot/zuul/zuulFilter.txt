@@ -1,0 +1,57 @@
+注意点：
+1.要支持zuul
+pom.xml全部支持：
+  </dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
+        </dependency>
+    </dependencies>
+
+2.入口文件添加注解
+@SpringBootApplication
+@EnableZuulProxy				//zuul
+@EnableEurekaClient			
+@EnableDiscoveryClient
+@EnableFeignClients			    //调用接口
+@ServletComponentScan   	           //zuul过滤器*
+
+入口文件添加bean
+    @Bean
+    public 过滤器文件名字 过滤器文件名字(){
+        return  new 过滤器文件名字();
+    }
+
+3.添加过滤器
+继承zuulFilter(注意重写方法)
+filterType（类型）；
+filterOrder（运行优先级整形  最小的先运行）；
+shouldFilter（是否使用该过滤器）；
+run（类似于普通过滤器的doFilter）；

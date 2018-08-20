@@ -1,0 +1,22 @@
+
+application.properties
+-------
+# routes to url  这里是绑定具体的ip地址
+
+zuul.routes.api-a-url.path=/api-a-url/**
+
+zuul.routes.api-a-url.url=http://www.baidu.com
+
+
+---------------------------------------------------------------------
+# routes to serviceId 这里边是通过serviceid来绑定地址，当在路径后添加/api-a/   则是访问service-A对应的服务。
+
+zuul.routes.api-a.path=/api-sso/**
+
+zuul.routes.api-a.serviceId=ishops-sso
+
+
+
+zuul.routes.api-b.path=/api-admin/**
+
+zuul.routes.api-b.serviceId=ishops-admin

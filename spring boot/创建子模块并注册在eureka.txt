@@ -1,0 +1,27 @@
+父模块：
+idea 新建项目new->project，选择maven,填好包名，项目名
+
+建好后，将src目录可删除
+----------------------------------
+eureka:
+在项目名上右键，新建模块module ，选择spring initializer,选上web ,cloud discovery中的Eureka Server
+编辑pom.xml,将原先默认的复制到父模块中，修改作为父模块的父信息，父模块信息填写到eureka的父模块中
+打开src/main到最后一层，添加 @EnableEurekaServer
+
+src/main/resources/application.properties
+spring.application.name=amncloud-eureka
+eureka.instance.hostname=localhost
+server.port=1001
+eureka.client.service-url.defaultZone=http://${eureka.instance.hostname}:${server.port}/eureka/
+
+----------------------------------------------------------------------------
+admin
+在项目名上右键，新建模块module ，选择spring initializer,选上web ,cloud discovery中的Eureka Discovery
+编辑pom.xml,将原先默认的复制到父模块中，修改作为父模块的父信息，父模块信息填写到eureka的父模块中
+打开src/main到最后一层，添加 @EnableDiscoveryClient
+
+src/main/resources/application.properties
+spring.application.name=amncloud-admin
+eureka.instance.hostname=localhost
+server.port=1002
+eureka.client.service-url.defaultZone=http://localhost:1001/eureka/

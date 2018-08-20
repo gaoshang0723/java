@@ -1,0 +1,35 @@
+debug=true/false  			开启关闭调试模式
+
+server.port=8080			服务端口
+
+server.servlet.context-path=/		应用上下文（控制区分每个服务的路由）
+
+spring.http.encoding.charset=UTF-8	默认字符集
+
+spring.thymeleaf.cache=true/false	开启关闭页面缓存
+					若为false,需配合idea设置 file->setting->build->compiler->Build Project Auto……  勾选	
+
+spring.mvc.data-format=yyyy-MM-dd	日期输入格式
+
+spring.jackson.date-format=yyyy-MM-dd HH:mm:ss SSS		json 输出的日期格式
+
+
+spring.jackson.time-zone=GMT+8 		设置GMT时区,加8为中国时区
+
+spring.profiles.active=dev		设置应用哪个配置文件（application-dev.yml）
+
+============================================================
+日志：
+	日志级别：debug<info<warn<error
+	默认级别为INFO
+	若设置了debug=true ，则自动降为debug
+logging.file=d:/logs/msb.log		设置日志存放位置
+
+logging.level.ROOT=INFO			设置全局日志输出级别（当前是只输出INFO及以上的日志信息）
+
+logging.level.org.springframework=ERROR	指定包输出级别
+
+
+============================================================
+数据库：
+

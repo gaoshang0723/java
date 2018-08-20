@@ -1,0 +1,2 @@
+具体方法上加注解
+@Transactional

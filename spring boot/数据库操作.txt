@@ -1,0 +1,112 @@
+pom.xml
+
+	<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mchange</groupId>		数据库连接池
+            <artifactId>c3p0</artifactId>
+            <version>0.9.5.2</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+======================================================
+application.yml
+
+	server:
+	  port: 1002
+	spring:
+	  application:
+	    name: ishops-sso
+
+	eureka:
+	  instance:
+	    hostname: localhost
+	  client:
+	    service-url:
+	      defaultZone:  http://localhost:1001/eureka/
+
+	datasource:
+	    driver-class-name: com.mysql.jdbc.Driver
+	    url: jdbc:mysql://127.0.0.1:3306/simplecloud
+	    username: root
+	    password: root
+	  jpa:
+	    hibernate:
+	      #ddl-auto: create #ddl-auto:设为create表示每次都重新建表
+	      ddl-auto: update #ddl-auto:设为update表示每次都不会重新建表
+	    show-sql: true
+====================================================
+建立数据表模型
+import javax.persistence.Id;
+@Entity					##注意
+public class User {
+    @Id
+    @GeneratedValue
+    private Integer id;
+    private String username;
+    private String password;
+    private Integer age;
+
+    public User() {			##注意
+    }
+	
+	set……
+	get……
+
+}
+====================================================
+建立接口（注意手动继承JpaRepository<数据表模型,Integer>）
+public interface UserRepository extends JpaRepository<User,Integer> {
+}
+====================================================
+控制器  增删改查
+
+    @Autowired			#引用资源
+    UserRepository userRepository;
+
+    @GetMapping(value = "/users")
+    public List<User> users(){
+        return userRepository.findAll();
+    }
+    /*增加一个user*/
+    @PostMapping(value = "/users")
+    public User useradd(@RequestParam("username") String username,
+                          @RequestParam("password") String password,
+                          @RequestParam("age") Integer age){
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setAge(age);
+       return userRepository.save(user);
+    }
+    /*查询一个user*/
+    @GetMapping(value = "/users/{id}")
+     public Optional<User> UserFindOne(@PathVariable("id") Integer id){
+         return  userRepository.findById(id);
+    }
+    /*更新user*/
+    @PutMapping(value = "/users/{id}")
+    public User UserUpdate(@PathVariable("id") Integer id,
+                                     @RequestParam("username") String username,
+                                     @RequestParam("password") String password,
+                                     @RequestParam("age") Integer age){
+
+        User user = new User();
+        user.setId(id);
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setAge(age);
+        return userRepository.save(user);
+
+    }
+    /*删除一个user*/
+    @DeleteMapping(value = "/users/{id}")
+    public void UserDelete(@PathVariable("id") Integer id){
+        userRepository.deleteById(id);
+    }

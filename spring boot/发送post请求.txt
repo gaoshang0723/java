@@ -1,0 +1,30 @@
+  public String HttpClientPostMethod(String url, String username, String password, String grant_type, String client_id, String client_secret, String scope) {
+
+        HttpClient httpClient = new HttpClient();
+        PostMethod postMethod = new PostMethod(url);
+        postMethod.addParameter("username", username);
+        postMethod.addParameter("password", password);
+        postMethod.addParameter("grant_type", grant_type);
+        postMethod.addParameter("client_id", client_id);
+        postMethod.addParameter("client_secret", client_secret);
+        postMethod.addParameter("scope", scope);
+
+        try {
+            httpClient.executeMethod(postMethod);
+            String responseMsg = postMethod.getResponseBodyAsString().trim();
+            JSONObject json1 = JSONObject.fromObject(responseMsg);
+            Map<String, Object> map = json1;
+            for (Map.Entry<String, Object> entry : map.entrySet()) {
+                System.out.println(entry.getKey() + "=" + entry.getValue());
+                if (entry.getKey().equals("access_token")) {
+                    return entry.getValue().toString();
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            postMethod.releaseConnection();
+        }
+        return null;
+    }
