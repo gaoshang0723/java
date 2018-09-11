@@ -1,0 +1,20 @@
+
+   @RequestMapping("/amn")
+    public String amn(Map<String,Object> map){
+        map.put("name","Amn");
+        map.put("sex","0");
+        map.put("age","20");
+        return "amn";
+    }
+
+=========================
+ftl文件
+${name}
+<#if sex=="0">
+男生
+</#if>
+
+
+
+输出:
+amn Amn 男生 

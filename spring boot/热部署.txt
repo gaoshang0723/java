@@ -1,0 +1,8 @@
+idea 
+1.file->settings->Build,Execution,Deployment->Compiler，勾选Build project automatically     （视图热部署）
+
+2.ctrl+shift+alt+/  ->Registry，勾选compiler.automake.allow.when.app.running
+
+
+
+注意启动方式为mvn spring-boot:run 

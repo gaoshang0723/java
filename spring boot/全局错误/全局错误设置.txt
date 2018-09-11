@@ -1,0 +1,45 @@
+新建ErrorController（com.ishops.demo.controller.ErrorController）
+
+添加注解@ControllerAdvice("com.ishops.demo") 		//扫描范围
+
+@ControllerAdvice("com.ishops.demo")
+public class ErrorController {
+	
+    @ResponseBody					//返回Json格式
+    @ExceptionHandler(RuntimeException.class)		//运行时错误
+    public Map<String , Object> errorResult(){
+        Map<String,Object> ErrorMap = new HashMap<String , Object>();
+        ErrorMap.put("errorCode","500");
+        ErrorMap.put("errorMsg","系统错误");
+        return  ErrorMap;
+    }
+}
+
+==================
+测试
+
+新建控制器AdminController(com.ishops.demo.controller.AdminController)
+新建方法
+
+@Controller
+public class AdminController{
+
+	@RequestMapping("/test")
+	@ResponseBody
+	public int test(int i){
+		retrun 1/i;
+	}
+
+}
+
+
+================
+结果
+{"errorCode":"500","errorMsg":"系统错误"}
+
+
+
+
+
+
+

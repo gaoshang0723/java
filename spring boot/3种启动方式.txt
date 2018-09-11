@@ -1,0 +1,10 @@
+1.mvn spring-boot:run   (可实现热部署) 
+ 
+2.mvn install 
+cd target
+java -jar ……
+
+3. idea  shift + F10
+
+
+
