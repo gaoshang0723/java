@@ -1,0 +1,51 @@
+作用：让代码更加简洁
+========
+
+前提：idea安装lombok插件
+
+
+pom.xml      
+
+       <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+==========================================
+以下注意先导入lombok
+@Slf4j		//日志注解
+@Getter		//get方法，无需手动创建get方法
+@Setter		//set方法，无需手动创建get方法
+@Data		//@Getter+@Setter
+
+=================================
+User.java
+package com.ishops.demo.model;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Getter
+@Setter
+public class User {
+    private String username;
+    private String age;
+
+    @Override
+    public String toString() {
+        return "username:"+username+",age:"+age;
+    }
+    public static void main(String[] args) {
+        User user = new User();
+        user.setAge("12");		//直接调用
+        user.setUsername("Amn");
+        log.info(user.toString());		//直接打印日志
+    }
+}
+
+====================
+执行user的main方法
+结果
+22:35:03.910 [main] INFO com.ishops.demo.model.User - username:Amn,age:12

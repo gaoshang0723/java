@@ -1,0 +1,4 @@
+下载后安装
+http://plugins.jetbrains.com/plugin/6317-lombok-plugin
+
+settings->plugins->install plugin from disk..
