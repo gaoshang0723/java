@@ -6,3 +6,9 @@ idea
 
 
 注意启动方式为mvn spring-boot:run 
+
+<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>

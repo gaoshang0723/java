@@ -1,0 +1,73 @@
+添加MySQL  mybatis
+--------------------------------------------------
+application.yml
+添加数据库信息
+spring:
+  datasource:
+     url: jdbc:mysql://localhost:3306/simplecloud?characterEncoding=UTF-8&useSSL=true
+     username: root
+     password: 123
+     driver-class-name: com.mysql.jdbc.Driver
+
+---------------------------------
+根据数据表，新建类
+import lombok.Data;
+@Data
+public class User {
+    private Integer id;
+    private String name;
+    private String age;
+    public static void main(){
+        new User();
+    }
+}
+
+---------------------------------
+新建Mapper接口
+
+public interface Mapper {
+    @Insert("INSERT INTO amn(name, age) VALUES(#{name}, #{age})")
+    int insertAmn(@Param("name") String name, @Param("age") String age);
+
+    @Update("update amn set name=#{name} where id=#{id}")
+    int updateAmn(@Param("name") String name,@Param("id") Integer id);
+}
+
+------------------------------------
+新建Service
+
+@Service
+@Slf4j
+public class TestService {
+    @Autowired
+    private Mapper mapper;
+
+    public int insertAmn(String name,String age){
+        int result =mapper.insertAmn(name,age);
+        return  result;
+    }
+    public int updateAmn(String name,Integer id){
+        int result=mapper.updateAmn(name,id);
+        return result;
+    }
+}
+
+----------------------------------------
+新建Controller
+
+@RestController
+public class TestController {
+    @Autowired
+    private TestService testService;
+
+    @RequestMapping("/insert")				//新增
+    public int insertAmn(String name,String age){
+        return testService.insertAmn(name, age);
+    }
+
+    @RequestMapping("/update")				//更新
+    public int updateAmn(String name,Integer id){
+        return testService.updateAmn(name, id);
+    }
+
+}

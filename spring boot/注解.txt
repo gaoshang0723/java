@@ -4,6 +4,11 @@
 @ResponseBody   支持返回json数据
 @RestController 返回http+json(restful) ，相当于 @Controller+@ResponseBody，由SpringMVC提供
 
-@EnableAutoConfiguration  扫描当前类
+@EnableAutoConfiguration  自动扫描当前类
 @ComponentScan("com.ishops.demo")  选择包进行扫描
 @SpringBootApplication   扫描当前包及子包的类 ，相当于 @EnableAutoConfiguration+@ComponentScan("com.ishops.demo")
+
+需导入lombok
+@Getter		//在编译成class文件时自动生成get方法
+@Setter		//在编译成class文件时自动生成set方法
+@Data		//@Getter+@Setter
