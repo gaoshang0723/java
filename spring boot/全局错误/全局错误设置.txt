@@ -1,25 +1,25 @@
-ĞÂ½¨ErrorController£¨com.ishops.demo.controller.ErrorController£©
+æ–°å»ºErrorControllerï¼ˆcom.ishops.demo.controller.ErrorControllerï¼‰
 
-Ìí¼Ó×¢½â@ControllerAdvice("com.ishops.demo") 		//É¨Ãè·¶Î§
+æ·»åŠ æ³¨è§£@ControllerAdvice("com.ishops.demo") 		//æ‰«æèŒƒå›´
 
 @ControllerAdvice("com.ishops.demo")
 public class ErrorController {
 	
-    @ResponseBody					//·µ»ØJson¸ñÊ½
-    @ExceptionHandler(RuntimeException.class)		//ÔËĞĞÊ±´íÎó
+    @ResponseBody					//è¿”å›Jsonæ ¼å¼
+    @ExceptionHandler(RuntimeException.class)		//è¿è¡Œæ—¶é”™è¯¯
     public Map<String , Object> errorResult(){
         Map<String,Object> ErrorMap = new HashMap<String , Object>();
         ErrorMap.put("errorCode","500");
-        ErrorMap.put("errorMsg","ÏµÍ³´íÎó");
+        ErrorMap.put("errorMsg","ç³»ç»Ÿé”™è¯¯");
         return  ErrorMap;
     }
 }
 
 ==================
-²âÊÔ
+æµ‹è¯•
 
-ĞÂ½¨¿ØÖÆÆ÷AdminController(com.ishops.demo.controller.AdminController)
-ĞÂ½¨·½·¨
+æ–°å»ºæ§åˆ¶å™¨AdminController(com.ishops.demo.controller.AdminController)
+æ–°å»ºæ–¹æ³•
 
 @Controller
 public class AdminController{
@@ -34,8 +34,9 @@ public class AdminController{
 
 
 ================
-½á¹û
-{"errorCode":"500","errorMsg":"ÏµÍ³´íÎó"}
+ç»“æœ
+è®¿é—®ï¼šhttp://IP:port/test?i=0
+{"errorCode":"500","errorMsg":"ç³»ç»Ÿé”™è¯¯"}
 
 
 
