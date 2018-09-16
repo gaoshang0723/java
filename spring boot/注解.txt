@@ -1,5 +1,7 @@
 @CrossOrigin   支持跨域
 
+@Transactional 数据库事务
+
 @Controller          返回的String到页面视图
 @ResponseBody   支持返回json数据
 @RestController 返回http+json(restful) ，相当于 @Controller+@ResponseBody，由SpringMVC提供
@@ -12,3 +14,4 @@
 @Getter		//在编译成class文件时自动生成get方法
 @Setter		//在编译成class文件时自动生成set方法
 @Data		//@Getter+@Setter
+
