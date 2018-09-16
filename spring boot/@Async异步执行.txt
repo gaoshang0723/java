@@ -1,0 +1,39 @@
+启动文件添加@EnableAsync
+
+新建类，并添加@Service注解，并在方法上添加@Async
+@Slf4j
+@Service				##
+public class AsyncC {
+    @Async			##
+    public  void test(){
+        log.info("2");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        log.info("3");
+    }
+}
+==============================
+控制器
+
+    @Autowired
+    private AsyncC asyncC;
+
+    @ResponseBody
+    @RequestMapping("/async")
+    public String AmnAsync() {
+        log.info("1");
+        asyncC.test();
+        log.info("4");
+        return "Amn";
+    }
+
+
+===========
+结果：
+1
+2
+4
+3
