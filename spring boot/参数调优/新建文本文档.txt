@@ -1,0 +1,2 @@
+-XX+PrintGCDetails -Xmx1024M -Xms1024M     		
+//-Xms 初始堆大小    -Xmx最大堆大小    #最好保持一致   越大越好  默认为4G
