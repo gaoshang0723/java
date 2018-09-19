@@ -3,7 +3,7 @@ application.properties
 -------
 # routes to url  这里是绑定具体的ip地址
 
-zuul.routes.api-a-url.path=/api-a-url/**
+zuul.routes.api-a-url.path=/api-a-url/**			#/api-a-url/**   后面必须跟随**
 
 zuul.routes.api-a-url.url=http://www.baidu.com
 
