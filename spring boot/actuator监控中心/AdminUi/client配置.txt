@@ -1,0 +1,68 @@
+adminui-client
+pom.xml
+------------
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.5.RELEASE</version>
+        <relativePath/> 
+    </parent>
+   <dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-starter-client</artifactId>		##与server不同的地方
+			<version>2.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jolokia</groupId>
+			<artifactId>jolokia-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+	</dependencies>
+
+------------------------
+启动类：
+@SpringBootApplication		##只有这一个注解
+public class AdminuiClientApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(AdminuiClientApplication.class, args);
+    }
+}
+-----------------------
+application.yml
+##表明server地址
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:2001
+##端口
+server:
+  port: 2002
+##Actuator监控的权限（全开*）
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+
