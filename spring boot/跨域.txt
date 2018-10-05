@@ -1,0 +1,19 @@
+1.跨域问题
+  两个微服务之间，不存在两个同时处理跨域，只要一端处理即可
+
+关于跨域的解决办法
+1）正常的微服务只需要在控制器中加入@CrossOrigin注解
+2）zuul网关过滤处理，需要在启动类中加入代码，注意过滤器的类型pre
+  @Bean
+    public CorsFilter corsFilter() {
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        final CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.addAllowedOrigin("*");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
+        config.setMaxAge(18000L);
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
+    }
+

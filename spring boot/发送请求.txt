@@ -1,3 +1,15 @@
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.3</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>3.1</version>
+        </dependency>
+
 GET:
 HttpClient httpClient = new HttpClient();					//实例化HttpClient    (org.apache.commons.httpclient.HttpClient）
 GetMethod getMethod = new GetMethod("http://localhost:1003/who");		//实例化get方法，传参为网址（org.apache.commons.httpclient.methods.GetMethod;）
