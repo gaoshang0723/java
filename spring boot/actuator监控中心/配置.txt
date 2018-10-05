@@ -1,0 +1,26 @@
+pom.xml
+
+   <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+--------------------------------------------
+application.yml
+
+##通过下面的配置启动所有夫人监控端点，默认情况下，这下端点是禁用的
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+如果不加这段配置
+##默认情况下,监控中心提供三个接口权限。
+在SpringBoot2.0之后， 监控中心的接口地址发生变化：
+	2.0：http://localhost:2018/actuator/beans
+	1.5：http://localhost:2018/beans

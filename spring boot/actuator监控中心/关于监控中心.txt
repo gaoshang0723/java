@@ -1,0 +1,11 @@
+什么是监控中心：
+   针对微服务服务的监控，
+	服务器内存变化（堆内存 线程 日志管理等），
+	检测服务器配置连接地址是否可用（模拟访问，懒加载），
+	统计多个bean(是spring容器的bean)，
+	统计springMVC @RequestMapping(统计http接口)。
+
+Actuator监控应用（没有界面，返回json格式）
+AdminUi 底层使用了Actuator监控应用 ，实现可视化界面
+应用场景：生产环境
+
