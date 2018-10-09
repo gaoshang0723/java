@@ -71,3 +71,7 @@ public class TestController {
     }
 
 }
+----------------------------------------
+启动文件
+@MapperScan("com.example.demo.mapper")		//mapper所在的包***
+
