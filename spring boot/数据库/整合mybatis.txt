@@ -31,6 +31,9 @@ public interface Mapper {
 
     @Update("update amn set name=#{name} where id=#{id}")
     int updateAmn(@Param("name") String name,@Param("id") Integer id);
+
+    @Select("select * from user")
+    List<User> selectAmn();
 }
 
 ------------------------------------
@@ -48,6 +51,10 @@ public class TestService {
     }
     public int updateAmn(String name,Integer id){
         int result=mapper.updateAmn(name,id);
+        return result;
+    }
+    public List<User> selectAmn(){
+         List<User> result = usermapper.selectAmn();
         return result;
     }
 }
@@ -68,6 +75,11 @@ public class TestController {
     @RequestMapping("/update")				//¸üÐÂ
     public int updateAmn(String name,Integer id){
         return testService.updateAmn(name, id);
+    }
+
+    @RequestMapping("/select")                			//²éÑ¯
+    public List<User> selecrAmn() {
+        return userService.selectAmn();
     }
 
 }
