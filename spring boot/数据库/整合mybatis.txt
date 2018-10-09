@@ -61,8 +61,8 @@ public class TestService {
 
 ----------------------------------------
 新建Controller
-
-@RestController
+##注意操作数据返回的数据，用@RestController或者是@Controller&&@ResponseBody,否则可能出现找不到视图报错
+@RestController		
 public class TestController {
     @Autowired
     private TestService testService;
