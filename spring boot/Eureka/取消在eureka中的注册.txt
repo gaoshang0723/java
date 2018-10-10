@@ -1,0 +1,16 @@
+   
+方法一：
+ @GetMapping("/off")
+    public void off(){
+        DiscoveryManager.getInstance().shutdownComponent();  //可调用该方法，但是在spring boot2.0已过时
+    }
+-----------------------------
+方法二：
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+get的方式访问/off
+curl -X GET http://localhost:1002/off
+即可停止在eureka中的注册
