@@ -1,0 +1,43 @@
+集群作用：
+  服务调用的关键是注册中心，有了注册中心，多个微服务可以直接通过接口互相调用，则可以省去处理跨域的问题。  
+  创建多个注册中心后，可防止一台注册中心宕机后，所有微服务无法调用而瘫痪。
+效果:
+  eureka1和eureka2启动后，启动客户端client，client会注册到eureka1中，不会在eureka2；
+  模拟eureka1宕机(手动停止eureka1)，过30秒左右，client会出现在eureka2。出现在eureka2的过程就是eureka1的注册信息转移到  eureka2上，从而发挥出集群的作用，保证所有微服务正常运行。
+==============================================
+步骤：
+创建两个eureka分别为eureka1，eureka2和一个客户端client
+=========
+eureka1的application.properties:
+
+spring.application.name=eureka1
+server.port=1001
+eureka.instance.hostname=localhost
+eureka.client.service-url.defaultZone=http://${eureka.instance.hostname}:1002/eureka/	##注意填写eureka2的地址端口
+eureka.client.register-with-eureka= true
+eureka.client.fetch-registry=true
+
+启动文件添加@EnabelEurekaServer注解
+-----------------------------------------------
+eureka2的application.properties:
+
+spring.application.name=eureka2
+server.port=1002
+eureka.instance.hostname=localhost
+eureka.client.service-url.defaultZone=http://${eureka.instance.hostname}:1001/eureka/	##注意填写eureka1的地址端口
+eureka.client.register-with-eureka= true
+eureka.client.fetch-registry=true
+
+启动文件添加@EnabelEurekaServer注解
+------------------
+
+client的application.properties:
+
+spring.application.name=client
+server.port=2001
+eureka.instance.hostname=localhost
+eureka.client.service-url.defaultZone= http://localhost:1001/eureka,http://localhost:1002/eureka/   ##填写eureka1和eureka2的地址
+
+启动文件添加@EnableDiscoveryClient
+
+
