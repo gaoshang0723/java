@@ -8,8 +8,6 @@
 入口文件加载自定义配置文件
 	@PropertySource("classpath:文件名字")
 
-控制中获取变量
-	@Value("${app.name}")
 
 
 

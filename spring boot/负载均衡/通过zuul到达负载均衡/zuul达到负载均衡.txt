@@ -1,0 +1,13 @@
+zuul达到负载均衡的思路是：两个服务的名字一样，端口不一样
+
+-----------------------------
+注册中心注册好zuul,ServiceA(2001),SerivceA(2002)
+
+eureka：
+CLOUD-SERVICEA	n/a (2)	(2)	UP (2) - DESKTOP-MI3G4M4:cloud-serviceA:2002 , DESKTOP-MI3G4M4:cloud-serviceA:2001
+
+---------------
+zuul配置文件设置路由跳转：
+zuul.routes.api-a.path=/a/**
+zuul.routes.api-a.service-id=cloud-servicea
+##注意使用服务名跳转

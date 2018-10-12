@@ -1,0 +1,39 @@
+获取自定义配置文件信息(自动装配到Bean中）:
+
+Amn.properties:
+	app.name=Amn
+	app.website=http://www.ishops.top
+
+控制器controller
+
+@Controller
+public class ServiceAController {
+
+   @Value("${app.name}")		**
+    private String name;		**
+
+    @GetMapping("/")
+    @ResponseBody
+    public String index(){
+        return "The name is "+ name;   		//The name is Amn
+    }
+}
+
+==========================================
+获取默认配置文件(application.properties)信息（使用@value注解）
+
+控制器controller
+@Controller
+public class ServiceAController {
+  
+    @Autowired				**
+    private Environment env;			**
+	
+    @GetMapping("/")
+    @ResponseBody
+    public String index(){
+      
+        return "this is "+env.getProperty("spring.application.name")+",the port is"+env.getProperty("server.port");  **
+	//this is serviceA,the port is 2001
+    }
+}

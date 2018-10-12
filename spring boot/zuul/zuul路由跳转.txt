@@ -16,7 +16,6 @@ zuul.routes.api-a.path=/api-sso/**
 zuul.routes.api-a.serviceId=ishops-sso
 
 
-
 zuul.routes.api-b.path=/api-admin/**
 
 zuul.routes.api-b.serviceId=ishops-admin

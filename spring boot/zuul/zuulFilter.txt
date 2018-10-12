@@ -37,7 +37,7 @@ pom.xml全部支持：
 
 2.入口文件添加注解
 @SpringBootApplication
-@EnableZuulProxy				//zuul
+@EnableZuulProxy				//zuul*
 @EnableEurekaClient			
 @EnableDiscoveryClient
 @EnableFeignClients			    //调用接口

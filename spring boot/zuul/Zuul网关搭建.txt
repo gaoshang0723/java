@@ -1,0 +1,33 @@
+pom.xml
+     <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+-------------------------------------
+启动文件添加@EnableZuulProxy
+---------------------------------
+配置文件applicaltion.properties
+
+spring.application.name=cloud-zuul
+server.port=1002
+eureka.client.service-url.defaultZone=http://localhost:1001/eureka/
+
+zuul.routes.api-a.path=/a/**			##路由
+zuul.routes.api-a.service-id=cloud-servicea	##转发到的微服务，注意要先注册到eureka
+#zuul.routes.api-a.url=http://www.baidu.com	##url
+
+zuul.routes.api-b.path=/b/**
+zuul.routes.api-b.service-id=cloud-serviceb
+详见zuul路由跳转
