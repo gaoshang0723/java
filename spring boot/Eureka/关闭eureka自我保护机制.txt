@@ -1,0 +1,17 @@
+dev开发环境可关闭：为了效率
+生产环境prd需要开启：为了避免网络问题（服务本身可用，但是网络问题导致eureka接受不到服务的心跳），导致误从注册列表中删除
+
+=================
+eureka的application.perproties
+
+#关闭eureka的自我保护机制，保证不可用服务及时剔除
+eureka.server.enable-self-preservation=false
+eureka.server.eviction-interval-timer-in-ms=2000
+--------------------------------
+客户端的application.properties
+
+#向eureka注册中心发送心跳间隔的时间，，单位为秒，默认30s
+eureka.instance.lease-renewal-interval-in-seconds=1
+#设置eurekaz注册中心收到心跳之后等待的时间上限，单位为秒，默认为90s，超过时间则从注册列表中删除（客户端告诉eureka）
+eureka.instance.lease-expiration-duration-in-seconds=2
+

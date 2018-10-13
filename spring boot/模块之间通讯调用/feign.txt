@@ -1,8 +1,12 @@
+服务提供者：提供对应的接口实现方法
+服务消费者：创建对应的方法接口（表明指向服务提供者），并在控制器中调用
+=======================================
+
 服务提供者：
 
   创建控制器（实现接口内容）
 @RestController
-public class HelloController {
+public class HelloController {				******
     @GetMapping("/hello/{name}")
     public String index(@PathVariable String name){
         return "this is admin ,hello!" + name;
@@ -12,7 +16,7 @@ public class HelloController {
   入口文件
 
 @SpringBootApplication
-@EnableEurekaClient		#注意
+@EnableEurekaClient		
 public class AmncloudAdminApplication {
 
     public static void main(String[] args) {
@@ -39,8 +43,7 @@ pom.xml
 服务消费者：
   接口
 
-@FeignClient(name= "amncloud-admin")
-
+@FeignClient(name= "amncloud-admin")				******重点
 public interface HelloRemote {
     @GetMapping("/hello/{name}")
     public String hello(@PathVariable("name") String name);
@@ -50,7 +53,7 @@ public interface HelloRemote {
 
 @RestController
 public class UcenterController {
-    @Autowired
+    @Autowired						******重点
     HelloRemote helloRemote;
 
     @GetMapping("/hello/{name}")
@@ -61,8 +64,8 @@ public class UcenterController {
 -------------------------
  入口文件
 @SpringBootApplication
-@EnableFeignClients   				#注意与服务提供者的不同
-@EnableDiscoveryClient				#注意
+@EnableFeignClients   				#注意与服务提供者的不同*********重点
+@EnableDiscoveryClient				
 public class AmncloudUcenterApplication {
 
     public static void main(String[] args) {

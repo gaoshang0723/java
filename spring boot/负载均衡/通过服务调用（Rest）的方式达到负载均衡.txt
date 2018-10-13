@@ -1,0 +1,31 @@
+达到负载均衡的思路是：两个服务的名字一样，端口不一样,调用的时候采用服务别名，走注册中心
+
+控制器
+@RestController
+public class OrderController {
+     //RestTemplate 是springboot 提供的web组件，底层用的httpclient技术
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @RequestMapping("/getmerber")
+    public String getmerber(){
+        //String url = "http://localhost:2001/index";  //方式一：直接调用，一般不采用
+         
+          //方式二：使用服务别名去注册中心获取对应的服务调用地址
+          //注意这里用的是服务别名，需要开启 “注册中心” 和在启动文件添加@LoadBalanced注解
+        String url="http://Merber/index";	
+        return restTemplate.getForObject(url,String.class);
+    }
+
+}
+============================
+启动文件添加注入RestTemplate
+    @Bean
+    @LoadBalanced			****
+    RestTemplate restTemplate(){
+        return new RestTemplate();
+    }
+
+
+添加@LoadBalaced可以 使用服务名字查找注册中心的地址，从而达到实现微服务调用。
+如果要调用的微服务有两个端口号（有一个备用服务），即可实现负载均衡。

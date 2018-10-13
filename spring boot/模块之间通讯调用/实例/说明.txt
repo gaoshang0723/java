@@ -1,0 +1,11 @@
+Eureka：1001
+Merber ：2001
+Merber2(Merber备用负载均衡) ：2002
+Order：3001
+
+
+
+==========================
+Eureka 开启了禁止自身注册，自身扫描服务，关闭了自我保护机制
+Merber 重新设置了向注册中心发送心跳的时间机制，1s发一次，eureka 等待的心跳时间上限为2s
+Order 开启了RestTemplate的方式跨服务调用，负载均衡（Merbe，Merber2）

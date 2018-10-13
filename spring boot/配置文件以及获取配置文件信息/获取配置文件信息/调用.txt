@@ -1,4 +1,4 @@
-获取自定义配置文件信息(自动装配到Bean中）:
+方法一：(自动装配到Bean中）:
 
 Amn.properties:
 	app.name=Amn
@@ -20,7 +20,7 @@ public class ServiceAController {
 }
 
 ==========================================
-获取默认配置文件(application.properties)信息（使用@value注解）
+方法二：（使用@value注解）
 
 控制器controller
 @Controller

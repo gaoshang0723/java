@@ -1,0 +1,5 @@
+调用两种方式
+1.RestTemplate
+   底层采用httpclient的技术,属于spring boot,是spring boot 默认采用的rebbon服务调用。
+2.Fegin
+  属于spring cloud 

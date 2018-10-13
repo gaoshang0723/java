@@ -1,4 +1,4 @@
-zuul达到负载均衡的思路是：两个服务的名字一样，端口不一样
+zuul达到负载均衡的思路是：两个服务的名字一样，端口不一样，在zuul的application.properties的转发配置serviceid
 
 -----------------------------
 注册中心注册好zuul,ServiceA(2001),SerivceA(2002)
