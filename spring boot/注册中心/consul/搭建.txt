@@ -1,0 +1,52 @@
+启动consul命
+consul agent -dev -ui -node=cy
+-dev开发服务器模式启动，-node结点名为cy，-ui可以用界面访问，默认能访问。
+
+测试访问地址:http://localhost:8500 
+==========================
+启动文件
+@EnableDiscoveryClient		//添加注解，consul和zookeeper客户端注解
+
+===========================
+pom.xml
+
+  <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+  <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+        </dependency>
+
+
+============================
+application.properties
+
+spring.application.name=Merber
+server.port=2001
+spring.cloud.consul.host=localhost		##consul服务端的地址
+spring.cloud.consul.port=8500			##consul服务端的端口
+#spring.cloud.consul.discovery.hostname=127.0.0.1	##客户端注册到注册中心的serviceId，默认为电脑名字http://DESKTOP-MI3G4M4
+
+====================================
+控制器
+从注册中心获取服务信息
+@RestController
+public class MerberController {
+
+    @Autowired
+    private DiscoveryClient discoveryClient;
+
+    @RequestMapping("/index")
+    public List<String> index(){
+        List<ServiceInstance> list =discoveryClient.getInstances("Merber");		//获取别名为Merber服务的信息
+        List<String> services = new ArrayList<>();
+        for (ServiceInstance serviceInstance:list){
+            if(serviceInstance!= null){
+                services.add(serviceInstance.getUri().toString());		//获取url http://DESKTOP-MI3G4M4:2001
+            }
+        }
+        return services;
+    }
+}

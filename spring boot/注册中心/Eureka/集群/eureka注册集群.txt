@@ -38,6 +38,6 @@ server.port=2001
 eureka.instance.hostname=localhost
 eureka.client.service-url.defaultZone= http://localhost:1001/eureka,http://localhost:1002/eureka/   ##填写eureka1和eureka2的地址
 
-启动文件添加@EnableDiscoveryClient
+启动文件添加@EnableEurekaClient
 
 

@@ -1,0 +1,4 @@
+@EnableDiscoveryClient 与@EnableEurekaClient区别
+
+1，@EnableDiscoveryClient注解是基于spring-cloud-commons依赖，并且在classpath中实现； 适合于consul、zookeeper注册中心
+2，@EnableEurekaClient注解是基于spring-cloud-netflix依赖，只能为eureka作用；
