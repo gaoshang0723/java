@@ -10,14 +10,12 @@ pom.xml
         </dependency>
 
 --------------------------------------------
-application.yml
+application.properties
 
-##通过下面的配置启动所有夫人监控端点，默认情况下，端点是禁用的，只开放三个
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
+##配置actuator端口，不配置默认与服务一个端口
+management.server.port=9001
+##通过下面的配置启动所有监控端点，默认情况下，端点是禁用的，只开放三个
+management.endpoints.web.exposure.include= '*'
 
 如果不加这段配置
 ##默认情况下,监控中心提供三个接口权限。

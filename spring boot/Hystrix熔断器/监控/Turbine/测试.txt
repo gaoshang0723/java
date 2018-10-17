@@ -1,0 +1,12 @@
+依次启动euerka（1001）  order（2002，9001） merber（2000，9002） turbin（3001）
+
+访问http://localhost:2000/hystrix（或者http://localhost:2002/hystrix）
+依次填写http://localhost:3001/turbine.stream ;;2000 ;;Amn
+即可显示图像化的熔断器状态
+
+如果一直为loading 
+依次访问一下每个服务（设置过fallback）对应的的路由
+http://localhost:2002/ordertomerber
+http://localhost:2000/MerberInfo
+
+

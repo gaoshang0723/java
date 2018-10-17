@@ -1,0 +1,2 @@
+Turbine 可以多个熔断器监控
+Hystrix Dashboard 只能单个

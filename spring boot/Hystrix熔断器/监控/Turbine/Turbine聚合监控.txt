@@ -1,0 +1,95 @@
+监控merber 和order
+
+merber和order条件：
+pom.xml
+  <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+      
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+        </dependency>
+----------------------------------------
+启动文件
+@EnableHystrix
+@EnableHystrixDashboard
+@EnableEurekaClient
+------------------------------------------
+application.properties添加
+
+#每个服务设置不同的端口号
+management.server.port=9002（9001）
+management.endpoints.web.exposure.exclude='*'
+------------------------------------------
+order和merber控制器都必须设置一个fallback
+
+@HystrixCommand(fallbackMethod = "fallback")
+    @RequestMapping("/MerberInfo")
+    public String MerberInfo(){
+        return  "name is "+env.getProperty("spring.application.name")+",port:"+env.getProperty("server.port");
+    }
+    public String fallback(){
+        return "error";
+    }
+#################
+ @HystrixCommand(fallbackMethod = "fallback")
+    @RequestMapping("/ordertomerber")
+    public String OrderToMerber(String name) {
+        System.out.println(Thread.currentThread().getName());
+        return merber.GetMerber(name).toString();
+    }
+
+    public String fallback(String name) {
+        return "Error" + name;
+    }
+=========================================================
+新建Turbine服务
+pom.xml
+ <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+        </dependency>
+<!--Turbine-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-turbine</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+----------------------------------
+application.properties
+
+spring.application.name=turbine
+server.port=3001
+eureka.client.service-url.defaultZone=http://localhost:1001/eureka/
+
+management.endpoints.web.exposure.exclude='*'
+#需要监控的服务集群名
+turbine.aggregator.cluster-config=default
+  #需要监控的服务名
+turbine.app-config=order,merber
+turbine.cluster-name-expression=new String("default")
+
+
+

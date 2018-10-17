@@ -1,0 +1,38 @@
+测试环境：
+开启eureka注册中心，启动merber服务和order服务并注册到eureka ，order用fegin方式通过eureka进行rpc远程调用，关闭merber,order调用时会发生错误。
+
+==========================
+pom.xml
+	
+<!--eureka 客户端-->
+    <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+<!--Hystrix包-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+
+=========================
+启动类
+@EnableHystrix
+
+========================
+控制器
+
+    @HystrixCommand(fallbackMethod = "fallback")      //添加注解 若该方法rpc远程访问报错，则调用fallback方法，给客户端返回友好提示
+    @RequestMapping("/ordertomerber")
+    public String  OrderToMerber(String name){
+       return merber.GetMerber(name).toString();
+    }
+    public String fallback(String name){
+        return "Error"+name;
+    }
+
+
+
+
+
+

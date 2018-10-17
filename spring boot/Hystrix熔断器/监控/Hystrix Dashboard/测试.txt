@@ -1,0 +1,15 @@
+2002 服务的端口号
+9001服务设置的hystrix的端口号
+
+访问http://localhost:2002/hystrix         ##，注意：端口号为具体服务对应的端口号而不是Eureka Server的端口号
+依次填写http://localhost:9001/actuator/hystrix.stream、2000、cralor(随意填写)，点击 moniter
+该页面显示了熔断器的谷中数据指标，这些数据指标含义如图
+===============================================
+
+
+细节地址：
+访问http://localhost:2002/ordertomerber，出错时，调用fallback的方法后
+	error null
+-------------
+访问http://lcoalshost:9001/actuator/hystrix.stream
+浏览器会显示熔断器的数据指标

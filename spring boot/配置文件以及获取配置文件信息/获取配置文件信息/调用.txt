@@ -1,4 +1,4 @@
-方法一：(自动装配到Bean中）:
+方法一：（使用@value注解）
 
 Amn.properties:
 	app.name=Amn
@@ -20,8 +20,7 @@ public class ServiceAController {
 }
 
 ==========================================
-方法二：（使用@value注解）
-
+方法二：(自动装配到Bean中）:
 控制器controller
 @Controller
 public class ServiceAController {
