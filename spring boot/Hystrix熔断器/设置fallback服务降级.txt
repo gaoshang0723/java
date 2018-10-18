@@ -27,7 +27,7 @@ pom.xml
     public String  OrderToMerber(String name){
        return merber.GetMerber(name).toString();
     }
-    public String fallback(String name){
+    public String fallback(String name){		//注意fallback的方法需和 原方法传的参数一致
         return "Error"+name;
     }
 

@@ -13,9 +13,24 @@ zuul.routes.api-a-url.url=http://www.baidu.com
 
 zuul.routes.api-a.path=/api-sso/**
 
-zuul.routes.api-a.serviceId=ishops-sso
+zuul.routes.api-a.serviceId=ishops-sso	##http://localhost:zuul端口号/ishops-sso/api-sso---->http://ishops.sso/api-sso
 
 
 zuul.routes.api-b.path=/api-admin/**
 
 zuul.routes.api-b.serviceId=ishops-admin
+
+
+--------------------------------------
+#设置feign客户端超时时间
+ribbon.ReadTimeout=4000	#指的是建立连接后从服务器读取到可用资源所用的时间
+ribbon.ConnectTimeout=4000	#指的是建立连接所用的时间，适用于网络状况正常的情况下，两端连接所用的时间。
+
+#熔断器超时时间
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds=60000
+
+
+
+
+
+
