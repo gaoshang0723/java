@@ -1,0 +1,31 @@
+手动刷新(操作config-client)
+-----------------
+pom.xml
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+-------------------------------------------------
+bootstrap.yml
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+------------------------------------------------
+控制器加注解
+
+@RestController
+@RefreshScope	//**
+public class ConfigClient {
+    @Value("${name}")
+    private String name;
+    @RequestMapping("/name")
+    public String index(){
+        return name;
+    }
+}
+------------------------------------------
+刷新操作：
+用post的方式访问http://localhost:{config.client的端口}/actuator/refresh

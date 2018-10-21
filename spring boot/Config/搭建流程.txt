@@ -1,0 +1,125 @@
+0.创建eureka注册中心
+1.创建远程git文件
+2.创建config-server	
+	  格式：http://localhost:{服务端口号}/{客户端名}/{环境}/
+	（获取git的配置文件信息http://localhost:8888/config-client/dev/）
+3.创建config-client
+	问题：可能由于优先级的问题，客户端每次获取到config-server的端口号为8888
+	解决：将application.yml更改问bootstrap.yml。（优先级：系统配置-->bootstrap.yml-->application.yml）
+================================
+码云：
+创建项目simplecloud
+创建文件config-client-dev.properties  	//格式：{项目名}-{环境}.properties
+
+name=Amn
+
+===============================
+config-server
+pom.xml
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-config-server</artifactId>	
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+    </dependencies>
+
+------------------------------------------------
+启动文件：
+@EnableConfigServer
+@EnableEurekaClient
+-------------------------------------------------
+application.yml
+###服务注册到eureka地址
+eureka:
+  client:
+    service-url:
+           defaultZone: http://localhost:1001/eureka/
+spring:
+  application:
+    ####注册中心应用名称
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          ###git环境地址
+          uri: https://gitee.com/lyf983674707/simplecoud.git
+          ####搜索目录
+#          search-paths:
+#            - config
+      ####读取分支
+      label: master
+####端口号
+server:
+  port: 8888
+================================================
+config-client
+pom.xml
+<dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>		
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+    </dependencies>
+---------------------------------------------------
+启动文件
+@EnableEurekaClient
+---------------------------------------------------
+bootstrap.yml
+spring:
+  application:
+    ####注册中心应用名称
+    name:  config-client
+  cloud:
+    config:
+    ####读取后缀
+      profile: dev
+      ####读取config-server注册地址（服务别名的方式）
+      discovery:
+        service-id: config-server
+        enabled: true
+      ####读取config-server注册地址（地址的方式spring.cloud.config.uri= http://localhost:8888/）
+ #   uri: http://localhost:8888/
+#####    eureka服务注册地址
+eureka:
+  client:
+    service-url:
+           defaultZone: http://localhost:1001/eureka/
+server:
+  port: 8002
+---------------------------------------------------
+测试：
+创建控制文件
+
+@RestController
+public class ConfigClient {
+    @Value("${name}")
+    private String name;
+    @RequestMapping("/name")
+    public String index(){
+        return name;
+    }
+}
+
+访问：http://localhost:8002/name
+Amn
+
+
+
