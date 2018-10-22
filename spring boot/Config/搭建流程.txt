@@ -77,6 +77,11 @@ pom.xml
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
+<!--可以开启手动刷新-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
     </dependencies>
 ---------------------------------------------------
 启动文件
@@ -104,6 +109,11 @@ eureka:
            defaultZone: http://localhost:1001/eureka/
 server:
   port: 8002
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 ---------------------------------------------------
 测试：
 创建控制文件
