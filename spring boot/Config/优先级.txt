@@ -1,1 +1,2 @@
 远程git的配置文件>bootstartp.yml>application.yml
+远程不可设置端口
