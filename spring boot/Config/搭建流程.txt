@@ -5,7 +5,7 @@
 	（获取git的配置文件信息http://localhost:8888/config-client/dev/）
 3.创建config-client
 	问题：可能由于优先级的问题，客户端每次获取到config-server的端口号为8888
-	解决：将application.yml更改问bootstrap.yml。（优先级：系统配置-->bootstrap.yml-->application.yml）
+	解决：将application.yml更改问bootstrap.yml。（优先级：系统配置-->远程配置-->bootstrap.yml-->application.yml）
 ================================
 码云：
 创建项目simplecloud
@@ -54,8 +54,8 @@ spring:
           ###git环境地址
           uri: https://gitee.com/lyf983674707/simplecoud.git
           ####搜索目录
-#          search-paths:
-#            - config
+           search-paths:
+            - config
       ####读取分支
       label: master
 ####端口号

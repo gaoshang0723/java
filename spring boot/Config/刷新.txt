@@ -29,3 +29,5 @@ public class ConfigClient {
 ------------------------------------------
 刷新操作：
 用post的方式访问http://localhost:{config.client的端口}/actuator/refresh
+
+curl -XPOST http://localhost:{config.client的端口}/actuator/refresh/
