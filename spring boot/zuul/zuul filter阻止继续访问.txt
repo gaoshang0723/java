@@ -1,0 +1,7 @@
+RequestContext ctx = RequestContext.getCurrentContext();
+HttpServletRequest request = ctx.getRequest();
+
+ctx.setSendZuulResponse(false);
+ctx.setResponseStatusCode(401);
+ctx.setResponseBody("{\"result\":\"accessToken ÎÞÐ§!\"}");
+ctx.getResponse().setContentType("text/html;charset=UTF-8");
