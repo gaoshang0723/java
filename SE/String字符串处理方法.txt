@@ -6,7 +6,7 @@ up.toUpperCase();			//大写
 up.toLowerCase();			//小写
 up.toCharArray();      			//转成数组
 new String(arr);			//数组转成字符串
-
+string.contains("invalid_token")		//查找string中是否含有invali_tokenBooln
 package com.arr;
 
 public class StringTest {
