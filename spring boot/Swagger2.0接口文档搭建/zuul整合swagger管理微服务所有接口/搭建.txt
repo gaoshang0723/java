@@ -13,6 +13,22 @@ swagger:
 ------------------------------------
 启动文件：
 @EnableSwagger2
+------------------------
+控制器（可不加）
+
+    @ApiOperation("获取用户信息")		//接口说明
+//    @ApiImplicitParam(name = "username",value = "用户名",required = true,dataType = "String")
+    @GetMapping("/users/{username}")
+    public Map<String, Object> UserInfo(@PathVariable("username") String username) {
+        Map<String, Object> userInfo = new HashMap<>();
+        User user = new User();
+        user = userservice.UserInfo(username).get(0);
+        userInfo.put("login",user.getUsername());
+        userInfo.put("avatar_url",user.getAvatarurl());
+        userInfo.put("create_at",user.getCreatetime());
+        userInfo.put("access",user.getAccess());
+        return userInfo;
+    }
 =============================================================
 ZuulGateway网关
 pom.xml
