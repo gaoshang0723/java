@@ -1,0 +1,62 @@
+其他微服务
+pom.xml
+		<!-- swagger-spring-boot -->
+		<dependency>
+			<groupId>com.spring4all</groupId>
+			<artifactId>swagger-spring-boot-starter</artifactId>
+			<version>1.7.0.RELEASE</version>
+		</dependency>
+---------------------------------------
+application.yml
+swagger:
+  base-package: com.itmayeidu.api		//控制器的包
+------------------------------------
+启动文件：
+@EnableSwagger2
+=============================================================
+ZuulGateway网关
+pom.xml
+   <dependency>
+            <groupId>com.spring4all</groupId>
+            <artifactId>swagger-spring-boot-starter</artifactId>
+            <version>1.7.0.RELEASE</version>
+        </dependency>
+-------------------------------------------
+启动文件
+@SpringBootApplication
+@EnableEurekaClient
+@EnableZuulProxy
+@EnableSwagger2
+public class GatewayApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(GatewayApplication.class, args);
+    }
+    @Component
+    @Primary
+    class DocumentationConfig implements SwaggerResourcesProvider {
+        @Override
+        public List<SwaggerResource> get() {
+            List resources = new ArrayList<>();
+          /* swaggerResource("右上角显示的名字（随意起）","/在eureka注册的名字/v2/api-docs（不能随意）","版本号")
+          *  多少服务就写多少个resources.add(……)
+          * */
+            resources.add(swaggerResource("member", "/merber/v2/api-docs", "2.0"));
+            resources.add(swaggerResource("order", "/order/v2/api-docs", "2.0"));
+            return resources;
+        }
+
+        private SwaggerResource swaggerResource(String name, String location, String version) {
+            SwaggerResource swaggerResource = new SwaggerResource();
+            swaggerResource.setName(name);
+            swaggerResource.setLocation(location);
+            swaggerResource.setSwaggerVersion(version);
+            return swaggerResource;
+        }
+    }
+
+}
+--------------------
+application.yml
+无需添加关于的swagger的配置
+
