@@ -59,4 +59,6 @@ public class GatewayApplication {
 --------------------
 application.yml
 无需添加关于的swagger的配置
-
+============================
+访问地址
+http://localhost:1002/swagger-ui.html

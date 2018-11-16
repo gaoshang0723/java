@@ -70,3 +70,6 @@ spring:
     name: swagger2
 server:
   port: 2018
+==================
+∑√Œ µÿ÷∑
+http://localhost:8060/swagger-ui.html
